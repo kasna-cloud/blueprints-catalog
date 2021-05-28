@@ -23,61 +23,13 @@ spec:
       aliasIpRange:
         - ipCidrRange: /24
           subnetworkRangeName: cloudrange
-  attachedDisk:
-    - sourceDiskRef:
-        name: computeinstance-dep1-cloudmachine
-      mode: READ_ONLY
-      deviceName: proxycontroldisk
-      diskEncryptionKeyRaw:
-        valueFrom:
-          secretKeyRef:
-            name: computeinstance-dep-cloudmachine
-            key: diskEncryptionKey
-    - sourceDiskRef:
-        name: computeinstance-dep2-cloudmachine
-      mode: READ_WRITE
-      deviceName: persistentdisk
   minCpuPlatform: "Intel Skylake"
-  serviceAccount:
-    serviceAccountRef:
-      name: inst-dep-cloudmachine
-    scopes:
-    - compute-rw
-    - logging-write
----
-apiVersion: compute.cnrm.cloud.google.com/v1beta1
-kind: ComputeDisk
-metadata:
-  annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: computeinstance-dep1-cloudmachine
-spec:
-  description: a sample encrypted, blank disk
-  physicalBlockSizeBytes: 4096
-  size: 1
-  type: pd-ssd
-  location: us-central1-a
-  diskEncryptionKey:
-    rawKey:
-      valueFrom:
-        secretKeyRef:
-          name: computeinstance-dep-cloudmachine
-          key: diskEncryptionKey
----
-apiVersion: compute.cnrm.cloud.google.com/v1beta1
-kind: ComputeDisk
-metadata:
-  annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: computeinstance-dep2-cloudmachine
-spec:
-  size: 1
-  type: pd-ssd
-  location: us-central1-a
 ---
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeNetwork
 metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
   name: computeinstance-dep-cloudmachine
 spec:
   routingMode: REGIONAL
@@ -86,6 +38,8 @@ spec:
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeSubnetwork
 metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
   name: computeinstance-dep-cloudmachine
 spec:
   networkRef:
@@ -95,10 +49,3 @@ spec:
   secondaryIpRange:
     - rangeName: cloudrange
       ipCidrRange: 10.3.16.0/20
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: computeinstance-dep-cloudmachine
-stringData:
-  diskEncryptionKey: "SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0="
