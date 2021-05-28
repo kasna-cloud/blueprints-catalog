@@ -10,7 +10,7 @@ metadata:
     cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
 spec:
   description: A GKE cluster confined to one zone configured for development.
-  location: us-central1-f
+  location: us-central1-b
   initialNodeCount: 1
   addonsConfig:
     gcePersistentDiskCsiDriverConfig:

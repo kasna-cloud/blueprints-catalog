@@ -3,13 +3,14 @@ kind: ComputeInstance
 metadata:
   annotations:
     cnrm.cloud.google.com/allow-stopping-for-update: "true"
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
   name: computeinstance-sample-cloudmachine
   labels:
     created-from: "image"
     network-type: "subnetwork"
 spec:
   machineType: n1-standard-1
-  zone: us-west1-a
+  zone: us-central1-a
   bootDisk:
     initializeParams:
       size: 24
@@ -47,13 +48,15 @@ spec:
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeDisk
 metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
   name: computeinstance-dep1-cloudmachine
 spec:
   description: a sample encrypted, blank disk
   physicalBlockSizeBytes: 4096
   size: 1
   type: pd-ssd
-  location: us-west1-a
+  location: us-central1-a
   diskEncryptionKey:
     rawKey:
       valueFrom:
@@ -64,11 +67,13 @@ spec:
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeDisk
 metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
   name: computeinstance-dep2-cloudmachine
 spec:
   size: 1
   type: pd-ssd
-  location: us-west1-a
+  location: us-central1-a
 ---
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeNetwork
@@ -86,15 +91,10 @@ spec:
   networkRef:
     name: computeinstance-dep-cloudmachine
   ipCidrRange: 10.2.0.0/16
-  region: us-west1
+  region: us-central1
   secondaryIpRange:
     - rangeName: cloudrange
       ipCidrRange: 10.3.16.0/20
----
-apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMServiceAccount
-metadata:
-  name: inst-dep-cloudmachine
 ---
 apiVersion: v1
 kind: Secret
