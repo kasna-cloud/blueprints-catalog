@@ -1,4 +1,4 @@
-# Google Cloud Storage bucket blueprint
+# GKE blueprint
 
-This blueprint deploys a single bucket into Google Cloud
+This blueprint deploys GKE into Google Cloud
 
