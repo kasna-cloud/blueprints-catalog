@@ -153,7 +153,7 @@ gcloud alpha blueprints delete kasna-landing
 ```
 
 ```
-kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n default
+kubectl logs -n cnrm-system -l cnrm.cloud.google.com/component=cnrm-controller-manager -c manager 
 ```
 
 ### Check the resources you have created:
