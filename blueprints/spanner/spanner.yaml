@@ -1,0 +1,20 @@
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  name: spanner.googleapis.com
+  namespace: config-controller-system # {"$kpt-set":"namespace"}
+---
+apiVersion: spanner.cnrm.cloud.google.com/v1beta1
+kind: SpannerInstance
+metadata:
+  labels:
+    environment: kasna
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  name: spannerinstance-1
+spec:
+  config: regional-us-west1
+  displayName: Spanner Instance Sample
+  numNodes: 2

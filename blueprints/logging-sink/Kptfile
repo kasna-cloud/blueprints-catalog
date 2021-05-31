@@ -1,7 +1,7 @@
 apiVersion: kpt.dev/v1alpha1
 kind: Kptfile
 metadata:
-  name: gke
+  name: logging-sink
 openAPI:
   definitions:
     io.k8s.cli.setters.name:
@@ -10,11 +10,11 @@ openAPI:
           name: name
           value: dan
           required: true
-      description: Bucket instance name
-    io.k8s.cli.substitutions.gke-name:
+      description: resource name
+    io.k8s.cli.substitutions.logging-sink-name:
       x-k8s-cli:
         substitution:
-          name: gke-name
+          name: firestore-name
           pattern: ${NAME}
           values:
           - marker: ${PROJECT_ID}

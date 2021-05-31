@@ -10,28 +10,18 @@ openAPI:
           name: name
           value: dan
           required: true
-      description: Bucket instance name
+      description: Resource name
     io.k8s.cli.setters.storage-class:
       x-k8s-cli:
         setter:
           name: storage-class
           value: standard
       description: Bucket storage class
-    io.k8s.cli.substitutions.bucket-name:
-      x-k8s-cli:
-        substitution:
-          name: bucket-name
-          pattern: ${PROJECT_ID}-${NAME}
-          values:
-          - marker: ${PROJECT_ID}
-            ref: '#/definitions/io.k8s.cli.setters.project-id'
-          - marker: ${NAME}
-            ref: '#/definitions/io.k8s.cli.setters.name'
     io.k8s.cli.substitutions.compute-name:
       x-k8s-cli:
         substitution:
-          name: gke-name
-          pattern: ${NAME}
+          name: compute-name
+          pattern: ${PROJECT_ID}-${NAME}
           values:
           - marker: ${PROJECT_ID}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
@@ -43,7 +33,7 @@ openAPI:
           name: project-id
           value: $DEFAULT_PROJECT
           required: true
-      description: Project ID for bucket instance
+      description: Project ID for resource
     io.k8s.cli.setters.namespace: 
       x-k8s-cli:
         setter:

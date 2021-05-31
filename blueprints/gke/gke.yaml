@@ -3,7 +3,7 @@ kind: ContainerCluster
 metadata:
   namespace: config-controller-system # {"$kpt-set":"namespace"}
   labels:
-    availability: dev
+    environment: kasna
     target-audience: development
   name: blueprints-project-gke # {"$ref":"#/definitions/io.k8s.cli.substitutions.gke-name"}
   annotations:
