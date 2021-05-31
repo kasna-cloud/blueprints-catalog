@@ -55,7 +55,7 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} --role=roles/owner --condit
 gcloud alpha admin-service-cluster instances create blueprints-cluster --location us-central1 --bundles Yakima
 ```
 
-### Blueprints are incompatible with regular release of Kubernetes, delete and recreate a stable release
+### Blueprints are incompatible with regular release of Kubernetes, delete and recreate a stable release:
 ```
 gcloud container clusters create krmapihost-blueprints-cluster \
     --release-channel stable \
