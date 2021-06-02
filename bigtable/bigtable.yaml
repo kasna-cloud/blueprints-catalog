@@ -19,7 +19,7 @@ kind: BigtableInstance
 metadata:
   annotations:
       cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: bigtableinstance-1
+  name: bigtableinstance-1 # {"$ref":"#/definitions/io.k8s.cli.substitutions.table-name"}
 spec:
   displayName: BigtableSample
   cluster:

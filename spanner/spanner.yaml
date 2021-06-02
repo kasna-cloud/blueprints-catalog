@@ -13,7 +13,7 @@ metadata:
     environment: kasna
   annotations:
     cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: spannerinstance-1
+  name: spannerinstance-1 # {"$ref":"#/definitions/io.k8s.cli.substitutions.spanner-name"}
 spec:
   config: regional-us-west1
   displayName: Spanner Instance Sample

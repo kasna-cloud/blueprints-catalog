@@ -11,12 +11,6 @@ openAPI:
           value: dan
           required: true
       description: Resource name
-    io.k8s.cli.setters.storage-class:
-      x-k8s-cli:
-        setter:
-          name: storage-class
-          value: standard
-      description: Bucket storage class
     io.k8s.cli.substitutions.compute-name:
       x-k8s-cli:
         substitution:

@@ -11,7 +11,7 @@ kind: FirestoreIndex
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: firestoreindex-1
+  name: firestoreindex-1 # {"$ref":"#/definitions/io.k8s.cli.substitutions.firestore-name"}
   namespace: config-controller-system # {"$kpt-set":"namespace"}
 spec:
   collection: sample-collection
