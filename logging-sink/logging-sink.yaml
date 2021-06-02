@@ -11,11 +11,11 @@ kind: LoggingLogSink
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: logginglogsink-sample-project
+  name: logginglogsink-sample-project # {"$ref":"#/definitions/io.k8s.cli.substitutions.logging-sink-name"}
   namespace: config-controller-system # {"$kpt-set":"namespace"}
 spec:
   projectRef:
-    name: kasna-test-landingzone
+    name: kasna-test-landingzone # {"$kpt-set":"project-id"}
   uniqueWriterIdentity: true
   destination:
     pubSubTopicRef:
