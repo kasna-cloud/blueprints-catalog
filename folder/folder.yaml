@@ -1,4 +1,3 @@
-kubectl apply -f - <<EOF
 apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
 kind: Project
 metadata:
@@ -12,4 +11,3 @@ spec:
   name: kix-experiment-1
   billingAccountRef:
     external: "014244-F1A39A-218EB5"
-EOF
