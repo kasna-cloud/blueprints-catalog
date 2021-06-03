@@ -11,7 +11,7 @@ kind: MonitoringGroup
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: monitoringgroup-sample
+  name: monitoringgroup-sample # {"$ref":"#/definitions/io.k8s.cli.substitutions.monitoring-group-name"}
   namespace: config-controller-system # {"$kpt-set":"namespace"}
 spec:
   filter: resource.metadata.name=has_substring("test")

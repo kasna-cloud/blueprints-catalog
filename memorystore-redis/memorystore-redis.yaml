@@ -13,7 +13,7 @@ metadata:
       cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
   labels:
     environment: kasna
-  name: redisinstance-1
+  name: redisinstance-1 # {"$ref":"#/definitions/io.k8s.cli.substitutions.redis-name"}
 spec:
   displayName: Sample Redis Instance
   region: us-central1

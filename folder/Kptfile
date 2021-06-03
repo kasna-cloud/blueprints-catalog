@@ -8,7 +8,7 @@ openAPI:
       x-k8s-cli:
         setter:
           name: name
-          value: dan
+          value: kasna-secured-zone56
           required: true
       description: folder name
     io.k8s.cli.substitutions.folder-name:
@@ -23,21 +23,21 @@ openAPI:
       x-k8s-cli:
         setter:
           name: project-id-in-folder
-          value: dan
+          value: kasna-secured-zone56
           required: true
       description: project ID
-    io.k8s.cli.setters.folder-id:
+    io.k8s.cli.setters.parent-folder-id:
       x-k8s-cli:
         setter:
-          name: folder-id
-          value: "dan"
+          name: parent-folder-id
+          value: 1069581036596
           required: true
       description: parent folder ID
     io.k8s.cli.setters.billing-acct-id:
       x-k8s-cli:
         setter:
           name: billing-acct-id
-          value: dan
+          value: 014244-F1A39A-218EB5
           required: true
       description: parent folder ID
     io.k8s.cli.setters.namespace:

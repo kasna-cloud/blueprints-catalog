@@ -11,10 +11,10 @@ openAPI:
           value: dan
           required: true
       description: resource name
-    io.k8s.cli.substitutions.mysql-name:
+    io.k8s.cli.substitutions.cloudsql-name:
       x-k8s-cli:
         substitution:
-          name: mysql-name
+          name: cloudsql-name
           pattern: ${NAME}
           values:
           - marker: ${PROJECT_ID}

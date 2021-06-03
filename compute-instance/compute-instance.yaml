@@ -4,7 +4,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/allow-stopping-for-update: "true"
     cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: computeinstance-sample-cloudmachine
+  name: computeinstance-sample-cloudmachine # {"$ref":"#/definitions/io.k8s.cli.substitutions.compute-name"}
   labels:
     created-from: "image"
     network-type: "subnetwork"
