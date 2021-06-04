@@ -24,7 +24,7 @@ You can check the resources you just created:
 ```
 kubectl get LoggingLogSink --namespace config-controller-system
 kubectl get MonitoringNotificationChannel --namespace config-controller-system
-kubectl get LoggingLogSink --namespace config-controller-system
+kubectl get MonitoringAlertPolicy --namespace config-controller-system
 ```
 
 # View in console
