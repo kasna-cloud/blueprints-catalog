@@ -1,0 +1,83 @@
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  name: logging.googleapis.com
+  namespace: config-controller-system
+---
+apiVersion: logging.cnrm.cloud.google.com/v1beta1
+kind: LoggingLogSink
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  name: logginglogsink-sample-project # {"$ref":"#/definitions/io.k8s.cli.substitutions.logging-sink-name"}
+  namespace: config-controller-system
+spec:
+  projectRef:
+    name: kasna-test-landingzone # {"$kpt-set":"project-id"}
+  uniqueWriterIdentity: true
+  destination:
+    pubSubTopicRef:
+      name: kasna-test-landingzone
+  filter: resource.type="bigquery_project" AND logName:"cloudaudit.googleapis.com"
+---
+apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+kind: Project
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+    cnrm.cloud.google.com/organization-id: "923715671876"
+  name: logginglogsink-dep-project
+  namespace: config-controller-system
+spec:
+  name: Project Sink Sample
+  billingAccountRef:
+    external: 014244-F1A39A-218EB5 # {"$ref":"#/definitions/io.k8s.cli.setters.billing-id"}
+---
+apiVersion: monitoring.cnrm.cloud.google.com/v1beta1
+kind: MonitoringNotificationChannel
+metadata:
+  labels:
+    response-priority: urgent-meltdown
+    target-user: on-call
+  name: monitoringnotificationchannel-sample-sms
+  namespace: config-controller-system
+spec:
+  type: sms
+  labels:
+    number: "61430448123" # {"$ref":"#/definitions/io.k8s.cli.setters.sms-number"}
+  description: A channel that sends notifications via Short Message Service (SMS).
+  enabled: true
+---
+apiVersion: monitoring.cnrm.cloud.google.com/v1beta1
+kind: MonitoringAlertPolicy
+metadata:
+  labels:
+    target-user: on-call
+    response-priority: urgent-meltdown
+  name: monitoringalertpolicy-sample-instanceperformance
+  namespace: config-controller-system
+spec:
+  displayName: Computing Instance CPU > 90%
+  enabled: true
+  notificationChannels:
+  - name: monitoringnotificationchannel-sample-sms
+  combiner: AND_WITH_MATCHING_RESOURCE
+  conditions:
+  - displayName: CPU usage is extremely high
+    conditionThreshold:
+      filter: metric.type="compute.googleapis.com/instance/cpu/utilization" AND resource.type="gce_instance"
+      aggregations:
+      - perSeriesAligner: ALIGN_MAX
+        alignmentPeriod: 60s
+        crossSeriesReducer: REDUCE_MEAN
+        groupByFields:
+        - project
+        - resource.label.instance_id
+        - resource.label.zone
+      comparison: COMPARISON_GT
+      thresholdValue: 0.9
+      duration: 900s
+      trigger:
+        count: 1
