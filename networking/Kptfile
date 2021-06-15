@@ -1,0 +1,46 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: networking
+openAPI:
+  definitions:
+    io.k8s.cli.setters.name:
+      x-k8s-cli:
+        setter:
+          name: name
+          value: computeroute-sample
+          required: true
+      description: Name for route
+    io.k8s.cli.setters.project-id:
+      x-k8s-cli:
+        setter:
+          name: project-id
+          value: $DEFAULT_PROJECT
+          required: true
+      description: Project ID for resource
+    io.k8s.cli.setters.destRange: 
+      x-k8s-cli:
+        setter:
+          name: destRange
+          value: "192.168.1.0/24"
+          required: true
+      description: Destination for route
+    io.k8s.cli.setters.nextHopIp: 
+      x-k8s-cli:
+        setter:
+          name: nextHopIp
+          value: "10.132.1.6"
+          required: true
+      description: Next hope gateway for route
+    io.k8s.cli.setters.priority: 
+      x-k8s-cli:
+        setter:
+          name: priority
+          value: "1000"
+      description: Route priority
+    io.k8s.cli.setters.namespace: 
+      x-k8s-cli:
+        setter:
+          name: namespace
+          value: config-controller-system
+      description: Namespace name for pipeline resources
