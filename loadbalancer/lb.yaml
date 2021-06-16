@@ -1,0 +1,66 @@
+# Global Forwarding Rule With Target Http Proxy
+# https://cloud.google.com/config-connector/docs/reference/resource-docs/compute/computeforwardingrule#global_forwarding_rule_with_target_http_proxy
+
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeForwardingRule
+metadata:
+  labels:
+    label-one: "value-one"
+  name: computeforwardingrule-sample-global-with-target-http-proxy
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  description: "A global forwarding rule"
+  target:
+    targetHTTPProxyRef:
+      name: computeforwardingrule-dep-global-with-target-http-proxy
+  ipAddress:  
+    addressRef:
+      name: computeaddress-sample-global # {"$kpt-set":"global-address"}
+  portRange: "80"
+  ipProtocol: "TCP"
+  ipVersion: "IPV4"
+  location: global
+  loadBalancingScheme: EXTERNAL
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeBackendService
+metadata:
+  name: computeforwardingrule-dep-global-with-target-http-proxy
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  healthChecks:
+    - healthCheckRef:
+        name: computeforwardingrule-dep-global-with-target-http-proxy
+  location: global
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeHealthCheck
+metadata:
+  name: computeforwardingrule-dep-global-with-target-http-proxy
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  checkIntervalSec: 10
+  httpHealthCheck:
+    port: 80
+  location: global
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeTargetHTTPProxy
+metadata:
+  name: computeforwardingrule-dep-global-with-target-http-proxy
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  urlMapRef:
+    name: computeforwardingrule-dep-global-with-target-http-proxy
+  location: global
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeURLMap
+metadata:
+  name: computeforwardingrule-dep-global-with-target-http-proxy
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  defaultService:
+    backendServiceRef:
+      name: computeforwardingrule-dep-global-with-target-http-proxy
+  location: global

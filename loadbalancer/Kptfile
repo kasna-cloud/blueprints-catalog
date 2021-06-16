@@ -1,0 +1,49 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: loadbalancer
+openAPI:
+  definitions:
+    io.k8s.cli.setters.project-id:
+      x-k8s-cli:
+        setter:
+          name: project-id
+          value: $DEFAULT_PROJECT
+          required: true
+      description: Project ID for resource
+    io.k8s.cli.substitutions.compute-name:
+      x-k8s-cli:
+        substitution:
+          name: compute-name
+          pattern: ${PROJECT_ID}-${NAME}
+          values:
+          - marker: ${PROJECT_ID}
+            ref: '#/definitions/io.k8s.cli.setters.project-id'
+          - marker: ${NAME}
+            ref: '#/definitions/io.k8s.cli.setters.name'
+    io.k8s.cli.setters.namespace: 
+      x-k8s-cli:
+        setter:
+          name: namespace
+          value: config-control
+      description: Namespace name for pipeline resources
+    io.k8s.cli.setters.subnet:
+      x-k8s-cli:
+        setter:
+          name: subnet
+          value: computeinstance-backend-subnet
+          required: true
+      description: Resource name
+    io.k8s.cli.setters.network:
+      x-k8s-cli:
+        setter:
+          name: network
+          value: computeinstance-backend
+          required: true
+      description: Resource name
+    io.k8s.cli.substitutions.global-address:
+      x-k8s-cli:
+        substitution:
+          name: global-address
+          value: computeaddress-sample-global
+      description: Resource name
