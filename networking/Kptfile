@@ -4,13 +4,6 @@ metadata:
   name: networking
 openAPI:
   definitions:
-    io.k8s.cli.setters.name:
-      x-k8s-cli:
-        setter:
-          name: name
-          value: computeroute-sample
-          required: true
-      description: Name for route
     io.k8s.cli.setters.project-id:
       x-k8s-cli:
         setter:
@@ -18,6 +11,20 @@ openAPI:
           value: $DEFAULT_PROJECT
           required: true
       description: Project ID for resource
+    io.k8s.cli.setters.network:
+      x-k8s-cli:
+        setter:
+          name: network
+          value: compute-dep
+          required: true
+      description: Project ID for resource
+    io.k8s.cli.setters.route-name:
+      x-k8s-cli:
+        setter:
+          name: name
+          value: computeroute-sample
+          required: true
+      description: Name for route
     io.k8s.cli.setters.destRange: 
       x-k8s-cli:
         setter:
@@ -29,7 +36,7 @@ openAPI:
       x-k8s-cli:
         setter:
           name: nextHopIp
-          value: "10.132.1.6"
+          value: "10.132.1.5"
           required: true
       description: Next hope gateway for route
     io.k8s.cli.setters.priority: 
