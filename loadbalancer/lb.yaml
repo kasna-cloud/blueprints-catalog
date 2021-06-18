@@ -11,11 +11,13 @@ metadata:
 spec:
   description: "A global forwarding rule"
   target:
-    targetHTTPProxyRef:
-      name: computeforwardingrule-dep-global-with-target-http-proxy
+    targetHTTPProxyRef: computeforwardingrule-dep-global-with-target-http-proxy
+# The IP Address here should come from the reserved IP in ip.yaml, but it does not seem work.
+# The LB is created but the frontend is not and the IP is not assigned.
   ipAddress:  
     addressRef:
       name: computeaddress-sample-global # {"$kpt-set":"global-address"}
+      namespace: config-control # {"$kpt-set":"namespace"}
   portRange: "80"
   ipProtocol: "TCP"
   ipVersion: "IPV4"
@@ -25,13 +27,18 @@ spec:
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeBackendService
 metadata:
-  name: computeforwardingrule-dep-global-with-target-http-proxy
+  name: lb-backend
   namespace: config-control # {"$kpt-set":"namespace"}
 spec:
   healthChecks:
     - healthCheckRef:
         name: computeforwardingrule-dep-global-with-target-http-proxy
   location: global
+  backend:
+    - group:
+        instanceGroupRef:
+         name: computeinstancegroup-sample
+         namespace: config-control # {"$kpt-set":"namespace"}
 ---
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeHealthCheck
@@ -62,5 +69,5 @@ metadata:
 spec:
   defaultService:
     backendServiceRef:
-      name: computeforwardingrule-dep-global-with-target-http-proxy
+      name: lb-backend
   location: global

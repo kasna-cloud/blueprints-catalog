@@ -1,0 +1,116 @@
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeInstanceTemplate
+metadata:
+  name: instancetemplate-sample
+  namespace: config-control # {"$kpt-set":"namespace"}
+  labels:
+    env: "dev"
+spec:
+  description: a sample instance template
+  tags:
+    - foo
+    - bar
+  instanceDescription: a sample instance created from the sample instance template
+  machineType: n1-standard-1
+  region: us-west1
+  disk:
+    - sourceDiskRef:
+        name: instancetemplate-dep
+      autoDelete: false
+      boot: true
+    - sourceImageRef:
+        name: instancetemplate-dep
+      autoDelete: true
+      boot: false
+      diskName: sample-attached-disk
+      deviceName: attachment
+      interface: SCSI
+      diskType: pd-ssd
+      diskSizeGb: 10
+      type: PERSISTENT
+  networkInterface:
+    - networkRef:
+        name: instancetemplate-dep
+      subnetworkRef:
+        name: instancetemplate-dep
+      networkIp: "10.2.0.1"
+      aliasIpRange:
+        - ipCidrRange: /16
+          subnetworkRangeName: sub-range
+  canIpForward: false
+  scheduling:
+    automaticRestart: true
+    onHostMaintenance: "MIGRATE"
+    preemptible: false
+  metadataStartupScript: "echo hi > /test.txt"
+  serviceAccount:
+    serviceAccountRef:
+      name: instancetemplate-dep
+    scopes:
+      - userinfo-email
+      - compute-ro
+      - storage-ro
+  guestAccelerator:
+    - type: nvidia-tesla-k80
+      count: 1
+  minCpuPlatform: "Intel Skylake"
+  shieldedInstanceConfig:
+    enableSecureBoot: false
+    enableVtpm: true
+    enableIntegrityMonitoring: true
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeDisk
+metadata:
+  name: instancetemplate-dep
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  description: a sample encrypted, blank disk
+  physicalBlockSizeBytes: 4096
+  size: 1
+  type: pd-ssd
+  location: us-west1-c
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeImage
+metadata:
+  name: instancetemplate-dep
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  description: A sample image created from an empty disk resource
+  diskRef:
+    name: instancetemplate-dep
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeNetwork
+metadata:
+  name: instancetemplate-dep
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  routingMode: REGIONAL
+  autoCreateSubnetworks: false
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeSubnetwork
+metadata:
+  name: instancetemplate-dep
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  ipCidrRange: 10.2.0.0/16
+  region: us-west1
+  description: a sample subnetwork
+  privateIpGoogleAccess: false
+  networkRef:
+    name: instancetemplate-dep
+  logConfig:
+    aggregationInterval: INTERVAL_10_MIN
+    flowSampling: 0.5
+    metadata: INCLUDE_ALL_METADATA
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccount
+metadata:
+  name: instancetemplate-dep
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  displayName: a sample Service Account

@@ -1,0 +1,64 @@
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeInstanceGroup
+metadata:
+  name: computeinstancegroup-sample
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  description: Compute instance group with two specified instances and named http and https ports.
+  instances:
+  - name: computeinstancegroup-dep1
+  - name: computeinstancegroup-dep2
+  namedPort:
+  - name: http
+    port: 80
+  - name: https
+    port: 443
+  zone: us-central1-a
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeInstance
+metadata:
+  name: computeinstancegroup-dep1
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  zone: us-central1-a
+  instanceTemplateRef:
+    name: instancetemplate-sample
+    namespace: config-control # {"$kpt-set":"namespace"}
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeInstance
+metadata:
+  name: computeinstancegroup-dep2
+  namespace: config-control # {"$kpt-set":"namespace"}
+spec:
+  zone: us-central1-a
+  instanceTemplateRef:
+    name: instancetemplate-sample
+    namespace: config-control # {"$kpt-set":"namespace"}
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeInstanceTemplate
+metadata:
+  name: instancetemplate-sample
+  namespace: config-control # {"$kpt-set":"namespace"}
+  labels:
+    env: "dev"
+spec:
+  description: a sample instance template
+  machineType: n1-standard-1
+  region: us-central1
+  disk:
+    - sourceImageRef:
+        external: debian-cloud/debian-9
+      boot: true
+  networkInterface:
+    - networkRef:
+        name: computeinstance-backend # {"$kpt-set":"network"}
+      subnetworkRef:
+        name: computeinstance-backend-subnet # {"$kpt-set":"subnet"}
+  canIpForward: false
+  minCpuPlatform: "Intel Skylake"
+  metadataStartupScript: "apt update\n
+                          apt -y upgrade\n
+                          apt -y install apache2\n"

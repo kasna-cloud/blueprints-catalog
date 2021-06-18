@@ -4,6 +4,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
   name: computeinstance-backend-subnet # {"$kpt-set":"subnet"}
+  namespace: config-control # {"$kpt-set":"namespace"}
 spec:
   networkRef:
     name: computeinstance-backend # {"$kpt-set":"network"}

@@ -4,6 +4,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
   name: computeinstance-backend # {"$kpt-set":"network"}
+  namespace: config-control # {"$kpt-set":"namespace"}
 spec:
   routingMode: REGIONAL
   autoCreateSubnetworks: false

@@ -1,0 +1,13 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: template
+openAPI:
+  definitions:
+    io.k8s.cli.setters.project-id:
+      x-k8s-cli:
+        setter:
+          name: project-id
+          value: $DEFAULT_PROJECT
+          required: true
+      description: Project ID for resource

@@ -4,9 +4,10 @@ metadata:
   annotations:
     cnrm.cloud.google.com/deletion-policy: "abandon"
   name: computeaddress-sample-global # {"$kpt-set":"global-address"}
+  namespace: config-control # {"$kpt-set":"namespace"}
   labels:
     label-one: "value-one"
-  namespace: config-control # {"$kpt-set":"namespace"}
+    namespace: config-control # {"$kpt-set":"namespace"}
 spec:
   addressType: EXTERNAL
   description: a test global address
