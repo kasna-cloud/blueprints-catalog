@@ -1,7 +1,7 @@
 apiVersion: kpt.dev/v1alpha1
 kind: Kptfile
 metadata:
-  name: spanner
+  name: sql
 openAPI:
   definitions:
     io.k8s.cli.setters.name:
@@ -11,10 +11,10 @@ openAPI:
           value: dan
           required: true
       description: resource name
-    io.k8s.cli.substitutions.spanner-name:
+    io.k8s.cli.substitutions.cloudsql-name:
       x-k8s-cli:
         substitution:
-          name: spanner-name
+          name: cloudsql-name
           pattern: ${NAME}
           values:
           - marker: ${PROJECT_ID}

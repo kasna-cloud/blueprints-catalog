@@ -1,7 +1,7 @@
 apiVersion: kpt.dev/v1alpha1
 kind: Kptfile
 metadata:
-  name: spanner
+  name: compute-instance
 openAPI:
   definitions:
     io.k8s.cli.setters.name:
@@ -10,12 +10,12 @@ openAPI:
           name: name
           value: dan
           required: true
-      description: resource name
-    io.k8s.cli.substitutions.spanner-name:
+      description: Resource name
+    io.k8s.cli.substitutions.compute-name:
       x-k8s-cli:
         substitution:
-          name: spanner-name
-          pattern: ${NAME}
+          name: compute-name
+          pattern: ${PROJECT_ID}-${NAME}
           values:
           - marker: ${PROJECT_ID}
             ref: '#/definitions/io.k8s.cli.setters.project-id'

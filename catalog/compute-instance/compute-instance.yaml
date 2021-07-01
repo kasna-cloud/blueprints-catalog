@@ -1,0 +1,51 @@
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeInstance
+metadata:
+  annotations:
+    cnrm.cloud.google.com/allow-stopping-for-update: "true"
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  name: computeinstance-sample-cloudmachine # {"$ref":"#/definitions/io.k8s.cli.substitutions.compute-name"}
+  labels:
+    created-from: "image"
+    network-type: "subnetwork"
+spec:
+  machineType: n1-standard-1
+  zone: us-central1-a
+  bootDisk:
+    initializeParams:
+      size: 24
+      type: pd-ssd
+      sourceImageRef:
+        external: debian-cloud/debian-9
+  networkInterface:
+    - subnetworkRef:
+        name: computeinstance-dep-cloudmachine
+      aliasIpRange:
+        - ipCidrRange: /24
+          subnetworkRangeName: cloudrange
+  minCpuPlatform: "Intel Skylake"
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeNetwork
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  name: computeinstance-dep-cloudmachine
+spec:
+  routingMode: REGIONAL
+  autoCreateSubnetworks: false
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeSubnetwork
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  name: computeinstance-dep-cloudmachine
+spec:
+  networkRef:
+    name: computeinstance-dep-cloudmachine
+  ipCidrRange: 10.2.0.0/16
+  region: us-central1
+  secondaryIpRange:
+    - rangeName: cloudrange
+      ipCidrRange: 10.3.16.0/20

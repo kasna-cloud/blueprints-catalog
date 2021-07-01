@@ -1,0 +1,44 @@
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccount
+metadata:
+  name: service-account-cloudsql # {"$ref":"#/definitions/io.k8s.cli.setters.service-account-name"}
+  namespace: config-controller-system
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: iampolicymember-service-account
+  namespace: config-controller-system
+spec:
+  member: user:sam.gh.lin@gmail.com # {"$ref":"#/definitions/io.k8s.cli.setters.iam-member"}
+  role: roles/iam.serviceAccountKeyAdmin
+  resourceRef:
+    apiVersion: iam.cnrm.cloud.google.com/v1beta1
+    kind: IAMServiceAccount
+    name: service-account-cloudsql # {"$ref":"#/definitions/io.k8s.cli.setters.service-account-name"}
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: project-iam-sa
+  namespace: config-controller-system
+spec:
+  member: serviceAccount:service-account-cloudsql@kasna-test-landingzone.iam.gserviceaccount.com # {"$ref":"#/definitions/io.k8s.cli.substitutions.project-id-in-sa-sub"}
+  role: roles/cloudsql.admin # {"$ref":"#/definitions/io.k8s.cli.setters.role"}
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: projects/kasna-test-landingzone # {"$ref":"#/definitions/io.k8s.cli.substitutions.project-id-in-resource-ref"}
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: project-iam-member
+  namespace: config-controller-system
+spec:
+  member: user:sam.gh.lin@gmail.com # {"$ref":"#/definitions/io.k8s.cli.substitutions.project-id-in-member-sub"}
+  role: roles/cloudsql.admin # {"$ref":"#/definitions/io.k8s.cli.setters.role"}
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: projects/kasna-test-landingzone # {"$ref":"#/definitions/io.k8s.cli.substitutions.project-id-in-resource-ref"}

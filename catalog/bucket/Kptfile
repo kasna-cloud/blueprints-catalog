@@ -8,9 +8,9 @@ openAPI:
       x-k8s-cli:
         setter:
           name: name
-          value: bucket
+          value: dan
           required: true
-      description: Bucket instance name
+      description: Resource name
     io.k8s.cli.setters.storage-class:
       x-k8s-cli:
         setter:
@@ -33,11 +33,10 @@ openAPI:
           name: project-id
           value: $DEFAULT_PROJECT
           required: true
-      description: Project ID for bucket instance
+      description: Project ID for resource
     io.k8s.cli.setters.namespace: 
       x-k8s-cli:
         setter:
           name: namespace
-          value: config-control
+          value: config-controller-system
       description: Namespace name for pipeline resources
-

@@ -1,20 +1,36 @@
 apiVersion: kpt.dev/v1alpha1
 kind: Kptfile
 metadata:
-  name: spanner
+  name: sre
 openAPI:
   definitions:
     io.k8s.cli.setters.name:
       x-k8s-cli:
         setter:
           name: name
-          value: dan
+          value: example
           required: true
       description: resource name
-    io.k8s.cli.substitutions.spanner-name:
+    io.k8s.cli.setters.billing-id:
+      x-k8s-cli:
+        setter:
+          name: billing-id
+          value: 014244-F1A39A-218EB5
+          required: true
+          isSet: true
+      description: billing id
+    io.k8s.cli.setters.sms-number:
+      x-k8s-cli:
+        setter:
+          name: sms-number
+          value: "61430448123"
+          required: true
+          isSet: true
+      description: sms number for alert policy
+    io.k8s.cli.substitutions.logging-sink-name:
       x-k8s-cli:
         substitution:
-          name: spanner-name
+          name: firestore-name
           pattern: ${NAME}
           values:
           - marker: ${PROJECT_ID}
@@ -28,7 +44,7 @@ openAPI:
           value: $DEFAULT_PROJECT
           required: true
       description: Project ID for resource
-    io.k8s.cli.setters.namespace: 
+    io.k8s.cli.setters.namespace:
       x-k8s-cli:
         setter:
           name: namespace

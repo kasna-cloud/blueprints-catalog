@@ -1,0 +1,31 @@
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  name: monitoring.googleapis.com 
+  namespace: config-controller-system # {"$kpt-set":"namespace"}
+---
+apiVersion: monitoring.cnrm.cloud.google.com/v1beta1
+kind: MonitoringGroup
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  name: monitoringgroup-sample # {"$ref":"#/definitions/io.k8s.cli.substitutions.monitoring-group-name"}
+  namespace: config-controller-system # {"$kpt-set":"namespace"}
+spec:
+  filter: resource.metadata.name=has_substring("test")
+  displayName: "MonitoringSubGroup"
+  parentRef:
+    name: monitoringgroup-dep
+---
+apiVersion: monitoring.cnrm.cloud.google.com/v1beta1
+kind: MonitoringGroup
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  name: monitoringgroup-dep
+  namespace: config-controller-system # {"$kpt-set":"namespace"}
+spec:
+  filter: resource.metadata.region=europe-west2
+  displayName: "MonitoringGroup"

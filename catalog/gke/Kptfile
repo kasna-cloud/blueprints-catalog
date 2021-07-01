@@ -1,7 +1,7 @@
 apiVersion: kpt.dev/v1alpha1
 kind: Kptfile
 metadata:
-  name: spanner
+  name: gke
 openAPI:
   definitions:
     io.k8s.cli.setters.name:
@@ -10,11 +10,11 @@ openAPI:
           name: name
           value: dan
           required: true
-      description: resource name
-    io.k8s.cli.substitutions.spanner-name:
+      description: Bucket instance name
+    io.k8s.cli.substitutions.gke-name:
       x-k8s-cli:
         substitution:
-          name: spanner-name
+          name: gke-name
           pattern: ${NAME}
           values:
           - marker: ${PROJECT_ID}

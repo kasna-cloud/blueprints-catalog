@@ -1,0 +1,21 @@
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  name: redis.googleapis.com
+  namespace: config-controller-system # {"$kpt-set":"namespace"}
+---
+apiVersion: redis.cnrm.cloud.google.com/v1beta1
+kind: RedisInstance
+metadata:
+  annotations:
+      cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+  labels:
+    environment: kasna
+  name: redisinstance-1 # {"$ref":"#/definitions/io.k8s.cli.substitutions.redis-name"}
+spec:
+  displayName: Sample Redis Instance
+  region: us-central1
+  tier: BASIC
+  memorySizeGb: 16

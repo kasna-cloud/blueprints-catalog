@@ -3,18 +3,18 @@ kind: Service
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: spanner.googleapis.com
+  name: sqladmin.googleapis.com
   namespace: config-controller-system # {"$kpt-set":"namespace"}
 ---
-apiVersion: spanner.cnrm.cloud.google.com/v1beta1
-kind: SpannerInstance
+apiVersion: sql.cnrm.cloud.google.com/v1beta1
+kind: SQLInstance
 metadata:
-  labels:
-    environment: kasna
   annotations:
     cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: spannerinstance-1 # {"$ref":"#/definitions/io.k8s.cli.substitutions.spanner-name"}
+  name: sqldatabase-10 # {"$ref":"#/definitions/io.k8s.cli.substitutions.cloudsql-name"}
+  namespace: config-controller-system # {"$kpt-set":"namespace"}
 spec:
-  config: regional-us-west1
-  displayName: Spanner Instance Sample
-  numNodes: 2
+  region: us-central1
+  databaseVersion: MYSQL_5_7
+  settings:
+    tier: db-n1-standard-1
