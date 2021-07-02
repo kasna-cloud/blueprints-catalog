@@ -1,4 +1,3 @@
-#!/bin/bash
 # Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -o errexit
-set -o pipefail
-
-source utils/lint.sh && check_lint
+apiVersion: storage.cnrm.cloud.google.com/v1beta1
+kind: StorageBucket
+metadata:
+  name: blueprints-project-redis-bucket # {"$ref":"#/definitions/io.k8s.cli.substitutions.redis-bucket-name"}
+  namespace: config-control # {"$kpt-set":"namespace"}
+  annotations:
+    cnrm.cloud.google.com/force-destroy: "false"
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+spec:
+  storageClass: standard # {"$kpt-set":"storage-class"}
+  uniformBucketLevelAccess: true
+  versioning:
+    enabled: false
