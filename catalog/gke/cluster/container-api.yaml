@@ -11,16 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-apiVersion: storage.cnrm.cloud.google.com/v1beta1
-kind: StorageBucket
+
+# Enable the Container service in the platform project
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
 metadata:
-  name: blueprints-project-bucket # kpt-set: ${project-id}-${name}
-  namespace: config-control # kpt-set: ${namespace}
   annotations:
-    cnrm.cloud.google.com/force-destroy: "false"
-    cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
+    cnrm.cloud.google.com/deletion-policy: abandon
+    cnrm.cloud.google.com/project-id: platform-project-id # {"$kpt-set":"platform-project-id"}
+  # Use a unique name to avoid overlap with other cluster package instances.
+  name: platform-project-id-cluster-name-container # {"$kpt-set":"platform-service-container"}
+  namespace: projects # {"$kpt-set":"projects-namespace"}
 spec:
-  storageClass: standard # kpt-set: ${storage-class}
-  uniformBucketLevelAccess: true
-  versioning:
-    enabled: false
+  resourceID: container.googleapis.com
