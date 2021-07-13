@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  name: bucket
+  name: dan-test-make
   namespace: config-control
-  project-id: $DEFAULT_PROJECT
+  project-id: kasna-test-landingzone
   storage-class: standard
