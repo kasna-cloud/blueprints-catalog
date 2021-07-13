@@ -1,13 +1,13 @@
 apiVersion: storage.cnrm.cloud.google.com/v1beta1
 kind: StorageBucket
 metadata:
-  name: bucket  # kpt-set: ${name}
-  namespace: config-control  # kpt-set: ${namespace}
+  name: YOUR_BUCKET_NAME # kpt-set: ${name}
+  namespace: config-control # kpt-set: ${namespace}
   annotations:
     cnrm.cloud.google.com/force-destroy: "false"
-    cnrm.cloud.google.com/project-id: kasna-test-landingzone  # kpt-set: ${project-id}
+    cnrm.cloud.google.com/project-id: kasna-test-landingzone # kpt-set: ${project-id}
 spec:
-  storageClass: standard  # kpt-set: ${storage-class}
+  storageClass: standard # kpt-set: ${storage-class}
   uniformBucketLevelAccess: true
   versioning:
     enabled: false

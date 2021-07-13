@@ -1,20 +1,20 @@
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
-  annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
   name: sqladmin.googleapis.com
-  namespace: config-controller-system # {"$kpt-set":"namespace"}
+  namespace: config-control # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: kasna-test-landingzone # kpt-set: ${project-id}
 ---
 apiVersion: sql.cnrm.cloud.google.com/v1beta1
 kind: SQLInstance
 metadata:
+  name: mari-sql-1111 # kpt-set: ${cloudsql-name}
+  namespace: config-control # kpt-set: ${namespace}
   annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: sqldatabase-10 # {"$ref":"#/definitions/io.k8s.cli.substitutions.cloudsql-name"}
-  namespace: config-controller-system # {"$kpt-set":"namespace"}
+    cnrm.cloud.google.com/project-id: kasna-test-landingzone # kpt-set: ${project-id}
 spec:
-  region: us-central1
   databaseVersion: MYSQL_5_7
+  region: us-central1
   settings:
     tier: db-n1-standard-1

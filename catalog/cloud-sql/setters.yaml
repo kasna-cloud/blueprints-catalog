@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: maria-sql
+data:
+  namespace: config-control
+  cloudsql-name: mari-sql-1111
+  project-id: kasna-test-landingzone
