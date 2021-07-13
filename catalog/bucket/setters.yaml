@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: setters
+  name: apply-setters-fn-config
 data:
-  name: dan-test-make
+  name: setter-test
   namespace: config-control
   project-id: kasna-test-landingzone
   storage-class: standard
+  
