@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cloud-sql-exp-0u1
+  name: spanner-config-u121
 data:
-  name: cloud-sql-exp-0u1
+  name: spanner-config-u122
   namespace: config-control
   project-id: kasna-test-landingzone

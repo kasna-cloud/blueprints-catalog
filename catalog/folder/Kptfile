@@ -1,48 +1,8 @@
-apiVersion: kpt.dev/v1alpha1
+apiVersion: kpt.dev/v1
 kind: Kptfile
 metadata:
   name: folder
-openAPI:
-  definitions:
-    io.k8s.cli.setters.name:
-      x-k8s-cli:
-        setter:
-          name: name
-          value: kasna-secured-zone56
-          required: true
-      description: folder name
-    io.k8s.cli.substitutions.folder-name:
-      x-k8s-cli:
-        substitution:
-          name: folder-name
-          pattern: ${NAME}
-          values:
-          - marker: ${NAME}
-            ref: '#/definitions/io.k8s.cli.setters.name'
-    io.k8s.cli.setters.project-id-in-folder:
-      x-k8s-cli:
-        setter:
-          name: project-id-in-folder
-          value: kasna-secured-zone56
-          required: true
-      description: project ID
-    io.k8s.cli.setters.parent-folder-id:
-      x-k8s-cli:
-        setter:
-          name: parent-folder-id
-          value: 1069581036596
-          required: true
-      description: parent folder ID
-    io.k8s.cli.setters.billing-acct-id:
-      x-k8s-cli:
-        setter:
-          name: billing-acct-id
-          value: 014244-F1A39A-218EB5
-          required: true
-      description: parent folder ID
-    io.k8s.cli.setters.namespace:
-      x-k8s-cli:
-        setter:
-          name: namespace
-          value: config-controller-system
-      description: Namespace name for pipeline resources
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/apply-setters:v0.1
+      configPath: setters.yaml
