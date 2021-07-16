@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: dan-test-spanner1i
+  name: setter
 data:
   namespace: dbteam-1
   config-region: regional-us-central1

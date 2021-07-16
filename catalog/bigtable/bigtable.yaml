@@ -17,7 +17,7 @@ metadata:
 apiVersion: bigtable.cnrm.cloud.google.com/v1beta1
 kind: BigtableInstance
 metadata:
-  name: bigtableinstance-1 # kpt-set: ${name}
+  name: blueprints-project-bigtableinstance # kpt-set: ${project-id}-${name}
   namespace: config-control # kpt-set: ${namespace}
   annotations:
     cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}

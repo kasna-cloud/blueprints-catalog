@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: maria-rb-111
+  name: setters
 data:
-  name: maria-redis-bucket-1
+  name: redisbucket1
   namespace: dbteam-1
   network: default
   project-id: kasna-test-landingzone
