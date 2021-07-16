@@ -52,4 +52,5 @@ Blueprints require a GKE cluster to operate. To save on costs, the cluster will 
 - folder
 - redis-bucket
 - bigquery
+- firestore
 

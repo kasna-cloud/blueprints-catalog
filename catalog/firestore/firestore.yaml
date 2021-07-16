@@ -1,8 +1,8 @@
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
-  name: firestore.googleapis.com
-  namespace: config-controller-system # kpt-set: ${namespace}
+  name: yourfirestorename # kpt-set: ${name}
+  namespace: config-control # kpt-set: ${namespace}
   annotations:
     cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
 ---
@@ -10,11 +10,11 @@ apiVersion: firestore.cnrm.cloud.google.com/v1beta1
 kind: FirestoreIndex
 metadata:
   name: firestoreindex-1 # kpt-set: ${name}
-  namespace: config-controller-system # kpt-set: ${namespace}
+  namespace: config-control # kpt-set: ${namespace}
   annotations:
     cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
 spec:
-  collection: sample-collection
+  collection: yourcollectionname # kpt-set: ${name}
   fields:
     - fieldPath: field1
       order: ASCENDING
