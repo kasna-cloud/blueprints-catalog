@@ -1,13 +1,9 @@
 apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-kind: Project
+kind: Folder
 metadata:
-  name: kix-experiment-11
+  name: kix-experiment-11 # kpt-set: ${displayName}
   namespace: config-control # kpt-set: ${namespace}
-  annotations:
-    cnrm.cloud.google.com/auto-create-network: "false"
-    cnrm.cloud.google.com/folder-id: "1069581036596"
-    cnrm.cloud.google.com/project-id: kasna-test-landingzone
 spec:
-  name: kix-experiment-11
-  billingAccountRef:
-    external: "014244-F1A39A-218EB5"
+  displayName: YOUR_FOLDER_NAME # kpt-set: ${displayName} 
+  folderRef:
+    external: "1069581036596" # kpt-set: ${parent-folder-id}

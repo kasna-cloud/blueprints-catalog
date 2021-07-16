@@ -1,31 +1,32 @@
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
-  annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
   name: bigtabletableadmin.googleapis.com
-  namespace: config-controller-system # {"$kpt-set":"namespace"}
+  namespace: config-control # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
 ---
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
-  annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
   name: bigtableadmin.googleapis.com
-  namespace: config-controller-system # {"$kpt-set":"namespace"}
+  namespace: config-control # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
 ---
 apiVersion: bigtable.cnrm.cloud.google.com/v1beta1
 kind: BigtableInstance
 metadata:
+  name: bigtableinstance-1 # kpt-set: ${name}
+  namespace: config-control # kpt-set: ${namespace}
   annotations:
-      cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
-  name: bigtableinstance-1 # {"$ref":"#/definitions/io.k8s.cli.substitutions.table-name"}
+    cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
 spec:
-  displayName: BigtableSample
   cluster:
-  - clusterId: bigtableinstance-dep1
-    zone: us-central1-a
-    numNodes: 3
-  - clusterId: bigtableinstance-dep2
-    zone: us-west1-a
-    numNodes: 3
+    - clusterId: bigtableinstance-dep1
+      numNodes: 3
+      zone: us-central1-a
+    - clusterId: bigtableinstance-dep2
+      numNodes: 3
+      zone: us-west1-a
+  displayName: BigtableSample

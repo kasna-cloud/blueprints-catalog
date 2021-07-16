@@ -1,52 +1,8 @@
-apiVersion: kpt.dev/v1alpha1
+apiVersion: kpt.dev/v1
 kind: Kptfile
 metadata:
   name: sre
-openAPI:
-  definitions:
-    io.k8s.cli.setters.name:
-      x-k8s-cli:
-        setter:
-          name: name
-          value: example
-          required: true
-      description: resource name
-    io.k8s.cli.setters.billing-id:
-      x-k8s-cli:
-        setter:
-          name: billing-id
-          value: 014244-F1A39A-218EB5
-          required: true
-          isSet: true
-      description: billing id
-    io.k8s.cli.setters.sms-number:
-      x-k8s-cli:
-        setter:
-          name: sms-number
-          value: "61430448123"
-          required: true
-          isSet: true
-      description: sms number for alert policy
-    io.k8s.cli.substitutions.logging-sink-name:
-      x-k8s-cli:
-        substitution:
-          name: firestore-name
-          pattern: ${NAME}
-          values:
-          - marker: ${PROJECT_ID}
-            ref: '#/definitions/io.k8s.cli.setters.project-id'
-          - marker: ${NAME}
-            ref: '#/definitions/io.k8s.cli.setters.name'
-    io.k8s.cli.setters.project-id:
-      x-k8s-cli:
-        setter:
-          name: project-id
-          value: $DEFAULT_PROJECT
-          required: true
-      description: Project ID for resource
-    io.k8s.cli.setters.namespace:
-      x-k8s-cli:
-        setter:
-          name: namespace
-          value: config-controller-system
-      description: Namespace name for pipeline resources
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/apply-setters:v0.1
+      configPath: setters.yaml

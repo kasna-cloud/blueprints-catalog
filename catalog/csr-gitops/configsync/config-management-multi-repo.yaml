@@ -4,6 +4,6 @@ metadata:
   name: config-management
   namespace: config-management-system
 spec:
-  enableMultiRepo: true
   # Unique across all clusters using the same ConfigSync repo. Name is used in Cluster Selectors
-  clusterName: config-controller-1 # {"$kpt-set":"cluster-name"}
+  clusterName: config-controller-1 # kpt-set: ${cluster-name}
+  enableMultiRepo: true

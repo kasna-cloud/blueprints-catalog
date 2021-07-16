@@ -45,7 +45,11 @@ Blueprints require a GKE cluster to operate. To save on costs, the cluster will 
 
 # Migration to Kpt 1.0
 - bucket
-- spanner
-
-# Compatibility Issues
+- bigtable
+- compute-instance
 - cloud-sql
+- spanner
+- folder
+- redis-bucket
+- bigquery
+

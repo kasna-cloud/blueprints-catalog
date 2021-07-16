@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setters
+data:
+  cluster-name: example-us-east4
+  location: us-east4
+  max-node-count: "2"
+  nodepool-name: primary
+  platform-namespace: config-control
+  platform-project-id: platform-project-id
+  projects-namespace: projects

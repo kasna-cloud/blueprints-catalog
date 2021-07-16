@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: GCPEnforceNamingV2
 metadata:
@@ -21,7 +20,7 @@ metadata:
 spec:
   parameters:
     naming_rules:
-    - kind: Folder
-      patterns:
-      # Matches words like "dev", "prod" or "staging"
-      - ^(dev|prod|staging|qa|shared)$
+      - kind: Folder
+        patterns:
+          # Matches words like "dev", "prod" or "staging"
+          - ^(dev|prod|staging|qa|shared)$

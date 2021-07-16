@@ -1,63 +1,10 @@
-apiVersion: kpt.dev/v1alpha1
+apiVersion: kpt.dev/v1
 kind: Kptfile
 metadata:
   name: .
-packageMetadata:
-  shortDescription: Grant an IAM role to a member for accessing a given service account
-openAPI:
-  definitions:
-    io.k8s.cli.setters.service-account-name:
-      x-k8s-cli:
-        setter:
-          name: service-account-name
-          value: service-account-cloudsql
-          isSet: true
-      description: The name of the new IAM service account.
-    io.k8s.cli.setters.iam-member:
-      x-k8s-cli:
-        setter:
-          name: iam-member
-          value: user:sam.gh.lin@gmail.com
-          isSet: true
-      description: GCP identity to grant the role
-    io.k8s.cli.setters.role:
-      x-k8s-cli:
-        setter:
-          name: role
-          value: roles/cloudsql.admin
-          isSet: true
-      description: the IAM role to grant to the member
-    io.k8s.cli.substitutions.project-id-in-resource-ref:
-      x-k8s-cli:
-        substitution:
-          name: project-id-in-resource-ref
-          pattern: projects/PROJECT_ID_SETTER
-          values:
-          - marker: PROJECT_ID_SETTER
-            ref: '#/definitions/io.k8s.cli.setters.project-id'
-    io.k8s.cli.setters.project-id:
-      x-k8s-cli:
-        setter:
-          name: project-id
-          value: kasna-test-landingzone
-          isSet: true
-      description: The target project where you want to create service accounts and
-        grant permissions.
-    io.k8s.cli.substitutions.project-id-in-sa-sub:
-      x-k8s-cli:
-        substitution:
-          name: project-id-in-sa-sub
-          pattern: serviceAccount:SERVICE_ACCOUNT_NAME_SETTER@PROJECT_ID_SETTER.iam.gserviceaccount.com
-          values:
-          - marker: PROJECT_ID_SETTER
-            ref: '#/definitions/io.k8s.cli.setters.project-id'
-          - marker: SERVICE_ACCOUNT_NAME_SETTER
-            ref: '#/definitions/io.k8s.cli.setters.service-account-name'
-    io.k8s.cli.substitutions.project-id-in-member-sub:
-      x-k8s-cli:
-        substitution:
-          name: project-id-in-member-sub
-          pattern: IAM_MEMBER_SETTER
-          values:
-          - marker: IAM_MEMBER_SETTER
-            ref: '#/definitions/io.k8s.cli.setters.iam-member'
+info:
+  description: Grant an IAM role to a member for accessing a given service account
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/apply-setters:v0.1
+      configPath: setters.yaml

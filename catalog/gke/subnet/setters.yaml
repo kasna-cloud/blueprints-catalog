@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setters
+data:
+  cluster-name: example-us-west4
+  location: us-east4
+  network-name: default
+  network-project-id: network-project-id
+  networking-namespace: networking
+  node-ip-range: 10.3.4.0/22
+  platform-project-id: platform-project-id
+  pod-ip-range: 172.17.0.0/16
+  service-ip-range: 172.18.0.0/16

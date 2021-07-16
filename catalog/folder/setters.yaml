@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: folder-test-012
+  name: maria-test-folder-111
 data:
-  name: kasna-secured-zone56
-  namespace: config-control
-  billing-acct-id: 014244-F1A39A-218EB5
+  namespace: hierarchy
+  billing-acct-id: "014244-F1A39A-218EB5"
+  displayName: ops
   parent-folder-id: "1069581036596"
-  project-id-in-folder: kasna-secured-zone56

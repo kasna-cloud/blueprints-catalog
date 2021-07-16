@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setters
+data:
+  name: example
+  namespace: config-controller-system
+  billing-id: 014244-F1A39A-218EB5
+  project-id: $DEFAULT_PROJECT
+  sms-number: "61430448123"

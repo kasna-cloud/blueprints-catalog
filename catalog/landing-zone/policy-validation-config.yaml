@@ -11,14 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: policy-validation-config
   annotations:
-    config.k8s.io/function: |
-      container:
-        image: gcr.io/config-management-release/policy-controller-validate
     config.kubernetes.io/local-config: "true"
 data: {}

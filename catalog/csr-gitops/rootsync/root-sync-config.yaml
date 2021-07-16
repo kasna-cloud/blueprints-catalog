@@ -6,8 +6,8 @@ metadata:
   namespace: config-management-system
 spec:
   git:
-    repo: https://source.developers.google.com/p/kasna-test-landingzone/r/deployment-repo
+    auth: gcenode
     branch: "master"
     dir: "/config"
-    auth: gcenode
+    repo: https://source.developers.google.com/p/kasna-test-landingzone/r/deployment-repo
   sourceFormat: unstructured
