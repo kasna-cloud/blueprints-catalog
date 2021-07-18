@@ -6,6 +6,6 @@ data:
   name: redisbucket1
   namespace: dbteam-1
   network: default
-  project-id: kasna-test-landingzone
+  project-id: $DEFAULT_PROJECT
   region: us-central1
   storage-class: standard

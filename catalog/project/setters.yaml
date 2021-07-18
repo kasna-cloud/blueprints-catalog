@@ -9,5 +9,5 @@ data:
   management-namespace: config-control
   management-project-id: management-project-id
   networking-namespace: networking
-  project-id: project-id
+  project-id: $DEFAULT_PROJECT
   projects-namespace: projects

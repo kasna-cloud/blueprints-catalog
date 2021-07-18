@@ -5,4 +5,4 @@ metadata:
 data:
   name: bigquery1
   namespace: dbteam-1
-  project-id: kasna-test-landingzone
+  project-id: $DEFAULT_PROJECT

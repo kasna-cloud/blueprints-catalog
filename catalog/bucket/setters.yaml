@@ -5,5 +5,5 @@ metadata:
 data:
   name: bucket1
   namespace: config-control
-  project-id: kasna-test-landingzone
+  project-id: $DEFAULT_PROJECT
   storage-class: standard

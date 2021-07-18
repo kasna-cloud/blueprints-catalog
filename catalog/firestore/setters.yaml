@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: maria-fs-111
+  name: setters
 data:
-  name: mariafs1
+  name: fs1
   namespace: dbteam-1
-  project-id: kasna-test-landingzone
+  project-id: $DEFAULT_PROJECT

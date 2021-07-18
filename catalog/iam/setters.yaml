@@ -4,6 +4,6 @@ metadata:
   name: setters
 data:
   iam-member: user:sam.gh.lin@gmail.com
-  project-id: kasna-test-landingzone
+  project-id: $DEFAULT_PROJECT
   role: roles/cloudsql.admin
   service-account-name: service-account-cloudsql

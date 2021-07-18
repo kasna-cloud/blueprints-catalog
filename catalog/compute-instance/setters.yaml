@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: maria-ci-111
+  name: setters
 data:
-  name: maria-ci-1
+  name: computeinstance1
   namespace: config-control
-  project-id: kasna-test-landingzone
+  project-id: $DEFAULT_PROJECT
