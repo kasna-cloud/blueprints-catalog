@@ -10,8 +10,10 @@ This repository contains blueprints to create a GCP Landing Zone.
 
 ## Apply a blueprint:
 ```
-gcloud alpha blueprints apply
+gcloud alpha blueprints --source=./[corresponding-blueprint-folder] apply [inctance-name]
 ```
+*Instace name used in this command should be the same as the one used in metadata in setters.yaml
+
 #### Output
 ```json
 {"eventType":"resourceApplied","group":"container.cnrm.cloud.google.com","kind":"ContainerCluster","name":"dan","namespace":"config-controller-system","operation":"Created","timestamp":"2021-05-31T01:08:07Z","type":"apply"}
@@ -20,8 +22,11 @@ gcloud alpha blueprints apply
 ```
 ## Delete a blueprint:
 ```
-gcloud alpha blueprints delete
+gcloud alpha blueprints delete [instance-name]
 ```
+
+*Instace name used in this command should be the same as the one used in metadata in setters.yaml
+
 #### Output:
 ```json
 {"eventType":"resourceDeleted","group":"container.cnrm.cloud.google.com","kind":"ContainerCluster","name":"dan","namespace":"config-controller-system","operation":"Deleted","timestamp":"2021-05-31T01:11:24Z","type":"delete"}
