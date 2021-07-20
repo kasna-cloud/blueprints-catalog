@@ -2,17 +2,17 @@ apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
   name: yourfirestorename # kpt-set: ${name}
-  projects-namespace: config-control # kpt-set: ${projects-namespace}
+  projects-namespace: projects # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/platform-project-id: blueprints-project # kpt-set: ${platform-project-id}
+    cnrm.cloud.google.com/platform-project-id: platform-project-id # kpt-set: ${platform-project-id}
 ---
 apiVersion: firestore.cnrm.cloud.google.com/v1beta1
 kind: FirestoreIndex
 metadata:
   name: firestoreindex-1 # kpt-set: ${name}
-  projects-namespace: config-control # kpt-set: ${projects-namespace}
+  projects-namespace: projects # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/platform-project-id: blueprints-project # kpt-set: ${platform-project-id}
+    cnrm.cloud.google.com/platform-project-id: platform-project-id # kpt-set: ${platform-project-id}
 spec:
   collection: yourcollectionname # kpt-set: ${name}
   fields:

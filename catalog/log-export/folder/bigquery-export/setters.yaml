@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  namespace: my-namespace
+  projects-namespace: projects
   dataset-description: BigQuery audit logs for folder
   dataset-location: US
   dataset-name: audit-logs
@@ -11,4 +11,4 @@ data:
   delete-contents-on-destroy: "false"
   filter: ""
   folder-k8s-name: my.folder.k8s.name
-  project-id: my-project-id
+  platform-project-id: platform-project-id

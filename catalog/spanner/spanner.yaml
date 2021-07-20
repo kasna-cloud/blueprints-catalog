@@ -2,10 +2,10 @@ apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
   name: spanner
-  projects-namespace: my-projects-namespace # kpt-set: ${projects-namespace}
+  projects-namespace: projects # kpt-set: ${projects-namespace}
   annotations:
     cnrm.cloud.google.com/disable-on-destroy: "false"
-    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+    cnrm.cloud.google.com/platform-project-id: blueprints-project # {"$kpt-set":"platform-project-id"}
 spec:
   resourceID: spanner.googleapis.com
 ---
@@ -13,7 +13,7 @@ apiVersion: spanner.cnrm.cloud.google.com/v1beta1
 kind: SpannerDatabase
 metadata:
   name: spanner-sample-database # kpt-set: ${database-name}
-  projects-namespace: my-projects-namespace # kpt-set: ${projects-namespace}
+  projects-namespace: projects # kpt-set: ${projects-namespace}
   annotations:
     cnrm.cloud.google.com/deletion-policy: "abandon"
 spec:
@@ -26,7 +26,7 @@ apiVersion: spanner.cnrm.cloud.google.com/v1beta1
 kind: SpannerInstance
 metadata:
   name: spanner-sample-instance # kpt-set: ${instance-name}
-  projects-namespace: my-projects-namespace # kpt-set: ${projects-namespace}
+  projects-namespace: projects # kpt-set: ${projects-namespace}
   annotations:
     cnrm.cloud.google.com/deletion-policy: "abandon"
 spec:

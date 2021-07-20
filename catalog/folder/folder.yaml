@@ -2,7 +2,7 @@ apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
 kind: Folder
 metadata:
   name: kix-experiment-11 # kpt-set: ${displayName}
-  namespace: config-control # kpt-set: ${projects-namespace}
+  namespace: projects # kpt-set: ${projects-namespace}
 spec:
   displayName: display-name # kpt-set: ${displayName} 
   folderRef:
