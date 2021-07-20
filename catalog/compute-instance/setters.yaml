@@ -4,5 +4,5 @@ metadata:
   name: setters
 data:
   name: computeinstance1
-  namespace: config-control
-  project-id: $DEFAULT_PROJECT
+  projects-namespace: projects
+  platform-project-id: platform-project-id 

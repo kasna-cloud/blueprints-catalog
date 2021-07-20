@@ -4,6 +4,6 @@ metadata:
   name: setters
 data:
   name: bucket1
-  namespace: config-control
-  project-id: $DEFAULT_PROJECT
+  projects-namespace: projects
+  platform-project-id: platform-project-id
   storage-class: standard

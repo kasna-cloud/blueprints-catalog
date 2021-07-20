@@ -2,20 +2,20 @@ apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
   name: sqladmin
-  namespace: dbteam-1 # {"$kpt-set":"namespace"}
+  projects-namespace: dbteam-1 # {"$kpt-set":"projects-namespace"}
   annotations:
     cnrm.cloud.google.com/disable-on-destroy: "false"
-    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
+    cnrm.cloud.google.com/platform-project-id: blueprints-project # {"$kpt-set":"platform-project-id"}
 spec:
   resourceID: sqladmin.googleapis.com
 ---
 apiVersion: sql.cnrm.cloud.google.com/v1beta1
 kind: SQLInstance
 metadata:
-  name: blueprints-project-sql # kpt-set: ${project-id}-${name}
-  namespace: dbteam-1 # kpt-set: ${namespace}
+  name: blueprints-project-sql # kpt-set: ${platform-project-id}-${name}
+  projects-namespace: dbteam-1 # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
+    cnrm.cloud.google.com/platform-project-id: blueprints-project # kpt-set: ${platform-project-id}
 spec:
   databaseVersion: MYSQL_5_7
   region: us-central1

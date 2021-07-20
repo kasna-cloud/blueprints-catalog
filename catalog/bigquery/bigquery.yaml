@@ -1,8 +1,8 @@
 apiVersion: bigquery.cnrm.cloud.google.com/v1beta1
 kind: BigQueryDataset
 metadata:
-  name: blueprints-project-bigquery # kpt-set: ${project-id}-${name}
-  namespace: config-control # kpt-set: ${namespace}
+  name: blueprints-project-bigquery # kpt-set: ${platform-project-id}-${name}
+  namespace: config-control # kpt-set: ${projects-namespace}
   annotations:
     cnrm.cloud.google.com/delete-contents-on-destroy: "false"
 spec:

@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: setter
 data:
-  namespace: dbteam-1
+  projects-namespace: projects
   config-region: regional-us-central1
   database-name: spanner-sample-database2
   instance-name: spanner-sample-instance2

@@ -4,5 +4,5 @@ metadata:
   name: setters
 data:
   name: bigquery1
-  namespace: dbteam-1
-  project-id: $DEFAULT_PROJECT
+  projects-namespace: projects
+  platform-project-id: platform-project-id

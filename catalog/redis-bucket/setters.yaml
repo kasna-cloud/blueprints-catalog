@@ -4,8 +4,8 @@ metadata:
   name: setters
 data:
   name: redisbucket1
-  namespace: dbteam-1
+  projects-namespace: projects
   network: default
-  project-id: $DEFAULT_PROJECT
+  platform-project-id: platform-project-id
   region: us-central1
   storage-class: standard

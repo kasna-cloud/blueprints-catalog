@@ -1,14 +1,14 @@
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeInstance
 metadata:
-  name: computeinstance-sample-cloudmachine # kpt-set: ${project-id}-${name}
-  namespace: config-control
+  name: computeinstance-sample-cloudmachine # kpt-set: ${platform-project-id}-${name}
+  projects-namespace: config-control
   labels:
     created-from: "image"
     network-type: "subnetwork"
   annotations:
     cnrm.cloud.google.com/allow-stopping-for-update: "true"
-    cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
+    cnrm.cloud.google.com/platform-project-id: blueprints-project # kpt-set: ${platform-project-id}
 spec:
   bootDisk:
     initializeParams:
@@ -30,9 +30,9 @@ apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeNetwork
 metadata:
   name: computeinstance-dep-cloudmachine
-  namespace: config-control
+  projects-namespace: config-control
   annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
+    cnrm.cloud.google.com/platform-project-id: blueprints-project # kpt-set: ${platform-project-id}
 spec:
   autoCreateSubnetworks: false
   routingMode: REGIONAL
@@ -41,9 +41,9 @@ apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeSubnetwork
 metadata:
   name: computeinstance-dep-cloudmachine
-  namespace: config-control
+  projects-namespace: config-control
   annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
+    cnrm.cloud.google.com/platform-project-id: blueprints-project # kpt-set: ${platform-project-id}
 spec:
   ipCidrRange: 10.2.0.0/16
   networkRef:
