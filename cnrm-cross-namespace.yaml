@@ -4,7 +4,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: cnrm-project-viewer-project-id # kpt-set: cnrm-project-viewer-${project-id}
-  namespace: projects # kpt-set: ${projects-namespace}
+  namespace: dbteam-1
 roleRef:
   name: cnrm-viewer
   kind: ClusterRole

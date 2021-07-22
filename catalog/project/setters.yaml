@@ -1,9 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: setters
+  name: thurs-pro9
 data:
-  folder-name: name.of.folder
-  project-id: project-id
+  billing-account-id: "014244-F1A39A-218EB5"
+  folder-name: NON_PROD_LZ
   folder-namespace: hierarchy
-  networking-namespace: networking
+  management-namespace: config-control
+  platform-project-id: kasna-test-landingzone
+  project-id: thurs-pro9
+  projects-namespace: dbteam-1
