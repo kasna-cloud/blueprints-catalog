@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: setters
+  name: maria1
 data:
-  namespace: my-namespace
+  projects-namespace: dbteam1
   filter: ""
   folder-k8s-name: my.folder.k8s.name
-  project-id: my-project-id
+  platform-project-id: kasna-test-landingzone
   topic-name: pubsub-logexport-dataset

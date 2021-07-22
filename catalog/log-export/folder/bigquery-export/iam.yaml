@@ -8,7 +8,7 @@ metadata:
 spec:
   memberFrom:
     logSinkRef:
-      name: my.folder.k8s.name-bqsink # kpt-set: ${folder-k8s-name}-bqsink
+      name: logginglogsink-dep-folder # kpt-set: ${log-folder-name}-bqsink
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project

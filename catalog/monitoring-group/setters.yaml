@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: setters
+  name: mgmaria11
 data:
-  name: dan
-  namespace: config-controller-system
-  project-id: $DEFAULT_PROJECT
+  name: monitoringgroup1
+  projects-namespace: dbteam1
+  platform-project-id: kasna-test-landingzone

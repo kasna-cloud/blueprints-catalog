@@ -1,14 +1,15 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: setters
+  name: bqexportmaria1
 data:
-  projects-namespace: projects
+  projects-namespace: dbteam1
   dataset-description: BigQuery audit logs for folder
   dataset-location: US
   dataset-name: audit-logs
   default-table-expiration-ms: "3600000"
   delete-contents-on-destroy: "false"
   filter: ""
-  folder-k8s-name: my.folder.k8s.name
-  platform-project-id: platform-project-id
+  log-folder-name: logginglogsink-dep-folder
+  platform-project-id: kasna-test-landingzone
+  org-id: "923715671876"

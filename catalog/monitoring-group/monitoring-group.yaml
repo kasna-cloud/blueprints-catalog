@@ -2,17 +2,17 @@ apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
   name: monitoring.googleapis.com
-  namespace: config-controller-system # kpt-set: ${namespace}
+  projects-namespace: projects # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
+    cnrm.cloud.google.com/platform-project-id: platform-project-id # kpt-set: ${platform-project-id}
 ---
 apiVersion: monitoring.cnrm.cloud.google.com/v1beta1
 kind: MonitoringGroup
 metadata:
-  name: monitoringgroup-sample # kpt-set: ${name}
-  namespace: config-controller-system # kpt-set: ${namespace}
+  name: monitoringgroup-sample # kpt-set: ${platform-project-id}-${name}
+  projects-namespace: projects # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
+    cnrm.cloud.google.com/platform-project-id: platform-project-id # kpt-set: ${platform-project-id}
 spec:
   displayName: "MonitoringSubGroup"
   filter: resource.metadata.name=has_substring("test")
@@ -23,9 +23,9 @@ apiVersion: monitoring.cnrm.cloud.google.com/v1beta1
 kind: MonitoringGroup
 metadata:
   name: monitoringgroup-dep
-  namespace: config-controller-system # kpt-set: ${namespace}
+  projects-namespace: projects # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/project-id: blueprints-project # kpt-set: ${project-id}
+    cnrm.cloud.google.com/platform-project-id: platform-project-id # kpt-set: ${platform-project-id}
 spec:
   displayName: "MonitoringGroup"
   filter: resource.metadata.region=europe-west2
