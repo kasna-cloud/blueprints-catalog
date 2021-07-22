@@ -2,17 +2,54 @@
 
 This repository contains the building blocks that can be used to create a landing zone only after Config Sync has been created. See [blueprints-landing-zone](https://gitlab.mantelgroup.com.au/kasna/kix/blueprints-landing-zone).
 
-# KIX-Blueprints Documentation
+# Prerequisites
 
-This repository contains blueprints to create a GCP Landing Zone.
+This section goes through step by step process to start with Google Cloud.
+
+# Setting up the device
+
+[Go to Google cloud](https://cloud.google.com)
+Sign up if you don’t have google account and go to console.
+
+## Open terminal
+
+* To go to your root directory type 
+```sh
+cd ~/
+```
+* To make the directory type 
+```bash
+mkdir ${UNIQUE_DIRECTORY_NAME}
+```
+```bash
+cd ${UNIQUE_DIRECTORY_NAME}
+```
+* To install the Google Cloud SDK, type
+```
+curl https://sdk.cloud.google.com | bash
+```
+* Open new terminal
+
+```
+gcloud auth login
+```
+* Follow the prompts
+* You will see a prompt to set project id
+```bash
+gcloud config set project ${YOUR_PROJECT_NAME}
+```
+* To install kpt
+```
+gcloud components install kpt
+```
 
 # Example commands
 
 ## Apply a blueprint:
 ```
-gcloud alpha blueprints --source=./[corresponding-blueprint-folder] apply [inctance-name]
+gcloud alpha blueprints apply --source=./<corresponding-blueprint-folder> <RESOURCE-NAME>
 ```
-*Instace name used in this command should be the same as the one used in metadata in setters.yaml
+* Resource name used in this command should be the same as the one used in metadata in setters.yaml
 
 #### Output
 ```json
@@ -22,10 +59,10 @@ gcloud alpha blueprints --source=./[corresponding-blueprint-folder] apply [incta
 ```
 ## Delete a blueprint:
 ```
-gcloud alpha blueprints delete [instance-name]
+gcloud alpha blueprints delete <RESOURCE-NAME>
 ```
 
-*Instace name used in this command should be the same as the one used in metadata in setters.yaml
+* Resource name used in this command should be the same as the one used in metadata in setters.yaml
 
 #### Output:
 ```json
