@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: setters
+  name: buckettesta9
 data:
-  name: bucket1
-  projects-namespace: projects
-  platform-project-id: platform-project-id
+  name: buckettesta9
+  projects-namespace: dbteam-1
+  platform-project-id: kasna-test-landingzone
   storage-class: standard

@@ -1,11 +1,8 @@
 apiVersion: kpt.dev/v1
 kind: Kptfile
 metadata:
-  name: simple-hierarchy
-info:
-  description: Resource hierarchy blueprint for GCP
+  name: folder
 pipeline:
   mutators:
     - image: gcr.io/kpt-fn/apply-setters:v0.1
       configPath: setters.yaml
-    - image: gcr.io/yakima-eap/generate-folders:latest

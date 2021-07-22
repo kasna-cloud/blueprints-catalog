@@ -1,16 +1,14 @@
 apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
 kind: Project
 metadata:
-  name: thurs-pro5 # kpt-set: ${project-id}
+  name: project-name # kpt-set: ${project-id}
   namespace: projects
   annotations:
     cnrm.cloud.google.com/auto-create-network: "false"
-    cnrm.cloud.google.com/folder-id: "174187959254"
     cnrm.cloud.google.com/project-id: kasna-test-landingzone
-    config.kubernetes.io/function: |
-      container:
-        image: gcr.io/yakima-eap/folder-ref:latest
 spec:
-  name: thurs-pro5 # kpt-set: ${project-id}
+  name: project-name # kpt-set: ${project-id}
+  folderRef:
+    external: "824343073954"
   billingAccountRef:
     external: "014244-F1A39A-218EB5"
