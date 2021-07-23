@@ -5,7 +5,7 @@ metadata:
   namespace: projects # kpt-set: ${projects-namespace}
   annotations:
     cnrm.cloud.google.com/force-destroy: "false"
-    cnrm.cloud.google.com/platform-project-id: platform-project-id # kpt-set: ${platform-project-id}
+    cnrm.cloud.google.com/project-id: platform-project-id # kpt-set: ${platform-project-id}
 spec:
   storageClass: standard # kpt-set: ${storage-class}
   uniformBucketLevelAccess: true

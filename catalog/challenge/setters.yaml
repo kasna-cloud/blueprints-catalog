@@ -1,9 +1,17 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: challenge1
+  name: challenge-setters
 data:
-  namespace: hierarchy
-  folder-name: challenge1
+  folder-name1: prod-blueprints
+  folder-name2: nonprod-blueprints
   org-id: "923715671876"
-  project-id: devops-e23w
+  project-id: codelabs-project-1234a
+  projects-namespace: projects
+  workload-namespace: dbteam-1
+  management-project-id: kasna-test-landingzone
+  billing-account-ref: "014244-F1A39A-218EB5"
+  bucket-name: friday-bucket
+  storageClass: standard
+  bigquery-id: friday-bigquery
+  friendly-name: bigquery-friendly-1hu2
