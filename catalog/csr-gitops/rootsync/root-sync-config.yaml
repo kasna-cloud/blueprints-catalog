@@ -7,7 +7,7 @@ metadata:
 spec:
   git:
     auth: gcenode
-    branch: master
+    branch: main
     dir: "/config"
     repo: https://source.developers.google.com/p/project-id/r/deployment-repo # kpt-set: https://source.developers.google.com/p/${project-number}/r/${deployment-repo}
   sourceFormat: unstructured
