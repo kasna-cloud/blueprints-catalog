@@ -28,4 +28,4 @@ metadata:
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/csr-gitops/v0.2.0
     cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
-    cnrm.cloud.google.com/disable-dependent-services: "true"
+    cnrm.cloud.google.com/deletion-policy: "abandon"
