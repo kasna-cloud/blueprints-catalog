@@ -1,14 +1,15 @@
 apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
 kind: Project
 metadata:
-  name: project-name # kpt-set: ${project-id}
+  name: project-id # kpt-set: ${project-id}
   namespace: projects
   annotations:
     cnrm.cloud.google.com/auto-create-network: "false"
-    cnrm.cloud.google.com/project-id: kasna-test-landingzone
+    cnrm.cloud.google.com/project-id: kasna-test-landingzone # kpt-set: ${project-id}
 spec:
-  name: project-name # kpt-set: ${project-id}
-  folderRef:
-    external: "824343073954"
+  name: project-id # kpt-set: ${project-id}
   billingAccountRef:
-    external: "014244-F1A39A-218EB5"
+    external: "AAAAAA-BBBBBB-CCCCCC" # kpt-set: ${billing-account-id}
+  folderRef:
+    name: name.of.folder # kpt-set: ${folder-name}
+    namespace: hierarchy # kpt-set: ${folder-namespace}
