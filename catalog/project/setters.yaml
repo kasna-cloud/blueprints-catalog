@@ -3,10 +3,10 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  billing-account-id: "014244-F1A39A-218EB5"
+  billing-account-id: "AAAAAA-BBBBBB-CCCCCC"
   folder-name: NON_PROD_LZ
   folder-namespace: hierarchy
   management-namespace: config-control
-  platform-project-id: kasna-test-landingzone
+  management-project-id: kasna-test-landingzone
   project-id: org-level-project-2
   projects-namespace: dbteam-1
