@@ -17,12 +17,12 @@
 # NOTE: Only changes to the "main" branch will result in actuation of resources.
 apiVersion: cloudbuild.cnrm.cloud.google.com/v1beta1
 kind: CloudBuildTrigger
-metadata:
-  name: source-repo-cicd-trigger # kpt-set: ${source-repo}-cicd-trigger
+metadata: # kpt-merge: config-control/source-repo-cicd-trigger
+  name: admin-config-cicd-trigger # kpt-set: ${source-repo}-cicd-trigger
   namespace: config-control # kpt-set: ${namespace}
   annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/csr-gitops/v0.1.0
-    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
+    cnrm.cloud.google.com/blueprint: cnrm/gitops/v0.2.0
+    cnrm.cloud.google.com/project-id: kasna-test-landingzone # kpt-set: ${project-id}
 spec:
   build:
     step:
@@ -42,7 +42,7 @@ spec:
         entrypoint: /bin/sh
         id: "Clone Deployment Repo"
         timeout: 300s
-      - name: gcr.io/kpt-dev/kpt:latest
+      - name: gcr.io/kpt-dev/kpt:v1.0.0-beta.1
         volumes:
           - name: hydrated-workspace
             path: /hydrated-workspace
@@ -52,49 +52,14 @@ spec:
             set -eo pipefail
             SRC_DIR="."
             DEST_DIR="/hydrated-workspace/config"
-            DEFAULT_CLUSTER_NAME_SELECTOR="${_ADMIN_CLUSTER_NAME}"
-            mkdir -p "$${DEST_DIR}"
-            echo "Default Cluster Name Selector: $${DEFAULT_CLUSTER_NAME_SELECTOR}"
+            echo "Initializing kpt"
+            kpt pkg init "$${SRC_DIR}"
             echo "Executing Kpt Functions..."
-            kpt fn source "$${SRC_DIR}" \
-            | kpt fn run \
-            | kpt cfg grep "kind=" \
-            | kpt cfg grep "metadata.annotations.config\.kubernetes\.io/local-config=true" --invert-match \
-            | kpt cfg grep "metadata.annotations.configmanagement\.gke\.io/cluster-selector" --invert-match \
-            | kpt cfg grep "metadata.annotations.configsync\.gke\.io/cluster-name-selector" --invert-match \
-            | kpt fn run --image gcr.io/kpt-fn/set-annotation:unstable \
-              -- "configsync.gke.io/cluster-name-selector=$${DEFAULT_CLUSTER_NAME_SELECTOR}" \
-            | kpt fn sink "$${DEST_DIR}"
-            mkdir -p "$${DEST_DIR}/clusterregistry"
-            echo "Merging clusters..."
-            kpt fn source "$${SRC_DIR}" \
-            | kpt cfg grep "kind=Cluster" --annotate=false \
-            | kpt cfg grep "apiVersion=clusterregistry\.k8s\.io/" --annotate=false \
-            > "$${DEST_DIR}/clusterregistry/clusters.yaml"
-            echo "Merging cluster selectors..."
-            kpt fn source "$${SRC_DIR}" \
-            | kpt cfg grep "kind=ClusterSelector" --annotate=false \
-            | kpt cfg grep "apiVersion=configmanagement\.gke\.io/" --annotate=false \
-            > "$${DEST_DIR}/clusterregistry/cluster-selectors.yaml"
+            kpt fn render "$${SRC_DIR}" --output="$${DEST_DIR}" --truncate-output=false
+            echo "Removing local config"
+            kpt fn eval "$${DEST_DIR}" -i gcr.io/yakima-eap/remove-annotated-resources:v0.1
         entrypoint: /bin/bash
         id: "Apply Hydration and Validation"
-      - name: gcr.io/yakima-eap/evaluate:latest
-        volumes:
-          - name: hydrated-workspace
-            path: /hydrated-workspace
-          - name: deployment-workspace
-            path: /deployment-workspace
-        args:
-          - '-c'
-          - |
-            set -e
-            printf "\n\nDiffing against deployment repo main branch:\n"
-            evaluate --before="/deployment-workspace/config" --after="/hydrated-workspace/config" --max_additions=1000 --max_modifications=1000 --max_deletions=1000
-        entrypoint: /bin/sh
-        id: "Evaluate hydrated changes"
-        waitFor:
-          - "Apply Hydration and Validation"
-          - "Clone Deployment Repo"
       - name: gcr.io/cloud-builders/gcloud:latest
         volumes:
           - name: hydrated-workspace
@@ -106,7 +71,7 @@ spec:
           - |
             set -e
             git pull origin $BRANCH_NAME || true # Ignore errors in case branch doesn't exist
-            rm -rf /deployment-workspace/config/*
+            git rm -rf /deployment-workspace/config/* || true # Ignore errors
             cp -r /hydrated-workspace/config /deployment-workspace/
             touch /deployment-workspace/config/.gitkeep
             # Configure Git to create commits with Cloud Build's service account
@@ -120,15 +85,15 @@ spec:
         entrypoint: /bin/sh
         id: "Push Changes To Deployment Repo"
         waitFor:
-          - "Evaluate hydrated changes"
+          - "Apply Hydration and Validation"
     timeout: 600s
-  description: Cloud Build Trigger for building source (DRY) repository pushes. This runs all user defined kpt fns applies a blast radius analysis and pushes to the deployment (WET) repository.
+  description: Cloud Build Trigger for rendering from the source repo to the deployment repo.
   disabled: false
   substitutions:
-    "_ADMIN_CLUSTER_NAME": "cluster-name" # kpt-set: ${cluster-name}
-    "_DEPLOYMENT_REPO": "deployment-repo" # kpt-set: ${deployment-repo}
-    "_SOURCE_REPO": "source-repo" # kpt-set: ${source-repo}
+    "_ADMIN_CLUSTER_NAME": "blueprints-cluster" # kpt-set: ${cluster-name}
+    "_DEPLOYMENT_REPO": "live-admin-config" # kpt-set: ${deployment-repo}
+    "_SOURCE_REPO": "admin-config" # kpt-set: ${source-repo}
   triggerTemplate:
     branchName: ".*"
     repoRef:
-      name: source-repo # kpt-set: ${source-repo}
+      name: admin-config # kpt-set: ${source-repo}
