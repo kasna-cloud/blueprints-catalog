@@ -1,11 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
-metadata:
+metadata: # kpt-merge: /setters
   name: setters
 data:
-  billing-account-id: AAAAAA-BBBBBB-CCCCCC
-  group-billing-admins: gcp-billing-admins@example.com
-  group-org-admins: gcp-organization-admins@example.com
+  group-billing-admins: test_lz_billing@test.kasna.com.au
+  group-org-admins: test_lz_dev@test.kasna.com.au
   management-namespace: config-control
-  management-project-id: management-project-id
-  org-id: "123456789012"
+  management-project-id: kasna-test-landingzone
+  org-id: "923715671876"
