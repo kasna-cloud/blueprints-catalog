@@ -6,7 +6,5 @@ info:
   description: Foundational landing zone blueprint for GCP
 pipeline:
   mutators:
-    - image: gcr.io/kpt-fn/apply-setters:v0.1
-      configPath: setters.yaml
     - image: gcr.io/config-management-release/policy-controller-validate
       configPath: policy-validation-config.yaml
