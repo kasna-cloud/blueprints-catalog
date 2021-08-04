@@ -3,4 +3,4 @@ kind: ServiceAccount
 metadata:
   name: project-id-ksa # kpt-set: ${project-id}-ksa
   annotations:
-    iam.gke.io/gcp-service-account: cnrm-system-dbteam-1@kasna-test-landingzone.iam.gserviceaccount.com # kpt-set: cnrm-system-${project-id}@${management-project-id}.iam.gserviceaccount.com
+    iam.gke.io/gcp-service-account: cnrm-system-project-id@kasna-test-landingzone.iam.gserviceaccount.com # kpt-set: cnrm-system-${project-id}@${management-project-id}.iam.gserviceaccount.com

@@ -8,5 +8,5 @@ spec:
     auth: gcenode
     branch: main
     dir: /
-    repo: https://source.developers.google.com/p/management-project-id/r/project-id # kpt-set: https://source.developers.google.com/p/${management-project-id}/r/${project_id}
+    repo: https://source.developers.google.com/p/management-project-id/r/project-id # kpt-set: https://source.developers.google.com/p/${management-project-id}/r/${project-id}
   sourceFormat: unstructured
