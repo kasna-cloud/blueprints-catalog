@@ -22,7 +22,7 @@ metadata: # kpt-merge: config-control/source-repo-cicd-trigger
   namespace: config-control # kpt-set: ${namespace}
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/gitops/v0.2.0
-    cnrm.cloud.google.com/project-id: kasna-test-landingzone # kpt-set: ${project-id}
+    cnrm.cloud.google.com/project-id: kasna-test-landingzone # kpt-set: ${management-project-id}
 spec:
   build:
     step:

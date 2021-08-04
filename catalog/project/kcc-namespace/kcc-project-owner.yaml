@@ -19,7 +19,7 @@ metadata:
   namespace: projects # kpt-set: ${projects-namespace}
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/kcc-namespace/v0.2.0-alpha.1
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 spec:
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1

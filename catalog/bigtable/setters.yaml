@@ -5,4 +5,4 @@ metadata:
 data:
   name: bigtable1
   projects-namespace: projects
-  platform-project-id: platform-project-id
+  management-project-id: management-project-id

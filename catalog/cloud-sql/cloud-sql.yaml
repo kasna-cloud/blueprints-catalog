@@ -5,17 +5,17 @@ metadata:
   projects-namespace: projects # {"$kpt-set":"projects-namespace"}
   annotations:
     cnrm.cloud.google.com/disable-on-destroy: "false"
-    cnrm.cloud.google.com/platform-project-id: platform-project-id # {"$kpt-set":"platform-project-id"}
+    cnrm.cloud.google.com/project-id: management-project-id # {"$kpt-set":"management-project-id"}
 spec:
   resourceID: sqladmin.googleapis.com
 ---
 apiVersion: sql.cnrm.cloud.google.com/v1beta1
 kind: SQLInstance
 metadata:
-  name: blueprints-project-sql # kpt-set: ${platform-project-id}-${name}
-  projects-namespace: projects # kpt-set: ${projects-namespace}
+  name: blueprints-project-sql # kpt-set: ${name}
+  namespace: projects # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/platform-project-id: platform-project-id # kpt-set: ${platform-project-id}
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
   databaseVersion: MYSQL_5_7
   region: us-central1

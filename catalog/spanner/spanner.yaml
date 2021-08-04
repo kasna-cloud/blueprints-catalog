@@ -5,7 +5,7 @@ metadata:
   projects-namespace: projects # kpt-set: ${projects-namespace}
   annotations:
     cnrm.cloud.google.com/disable-on-destroy: "false"
-    cnrm.cloud.google.com/platform-project-id: blueprints-project # {"$kpt-set":"platform-project-id"}
+    cnrm.cloud.google.com/project-id: blueprints-project # {"$kpt-set":"project-id"}
 spec:
   resourceID: spanner.googleapis.com
 ---

@@ -4,5 +4,5 @@ metadata:
   name: setters
 data:
   name: bigquerydan2
-  platform-project-id: kasna-test-landingzone
+  management-project-id: kasna-test-landingzone
   projects-namespace: config-control

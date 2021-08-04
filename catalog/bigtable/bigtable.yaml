@@ -4,23 +4,23 @@ metadata:
   name: bigtabletableadmin.googleapis.com
   projects-namespace: projects # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/platform-project-id: blueprints-project # kpt-set: ${platform-project-id}
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 ---
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
   name: bigtableadmin.googleapis.com
-  projects-namespace: config-control # kpt-set: ${projects-namespace}
+  projects-namespace: config-control # kpt-set: ${management-namespace}
   annotations:
-    cnrm.cloud.google.com/platform-project-id: blueprints-project # kpt-set: ${platform-project-id}
+    cnrm.cloud.google.com/management-project-id: management-project-id # kpt-set: ${management-project-id}
 ---
 apiVersion: bigtable.cnrm.cloud.google.com/v1beta1
 kind: BigtableInstance
 metadata:
-  name: blueprints-project-bigtableinstance # kpt-set: ${platform-project-id}-${name}
-  projects-namespace: config-control # kpt-set: ${projects-namespace}
+  name: blueprints-project-bigtableinstance # kpt-set: ${name}
+  projects-namespace: config-control # kpt-set: ${management-namespace}
   annotations:
-    cnrm.cloud.google.com/platform-project-id: blueprints-project # kpt-set: ${platform-project-id}
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
   cluster:
     - clusterId: bigtableinstance-dep1
