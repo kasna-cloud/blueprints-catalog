@@ -1,7 +1,7 @@
 apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
 kind: Project
 metadata:
-  name: project-id # kpt-set: ${project-id}
+  name: project-id # kpt-set: ${project-name}
   namespace: projects # kpt-set: ${project-namespace}
   annotations:
     cnrm.cloud.google.com/auto-create-network: "false"
