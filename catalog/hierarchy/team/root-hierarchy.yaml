@@ -15,7 +15,7 @@ apiVersion: blueprints.cloud.google.com/v1alpha3
 kind: ResourceHierarchy
 metadata:
   name: root-hierarchy
-  namespace: hierarchy # {"$kpt-set":"namespace"}
+  namespace: hierarchy # kpt-set: ${hierarchy-namespace}
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/landing-zone:hierarchy:team/v0.2.0
     config.kubernetes.io/local-config: "true"
@@ -26,7 +26,7 @@ spec:
     - finance:
         $subtree: environments
   parentRef:
-    external: "123456789012" # {"$kpt-set":"org-id"}
+    external: "123456789012" # kpt-set: ${org-id}
   subtrees:
     environments:
       - dev
