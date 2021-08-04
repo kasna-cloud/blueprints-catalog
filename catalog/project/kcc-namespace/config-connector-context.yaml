@@ -7,4 +7,4 @@ metadata:
 spec:
   # The Google Service Account used to authenticate Google Cloud APIs in this Namespace
   # Convention name based
-  googleServiceAccount: "cnrm-system-dbteam-1@kasna-test-landingzone.iam.gserviceaccount.com" # kpt-set: cnrm-system-${project_id}@${management_project_id}.iam.gserviceaccount.com
+  googleServiceAccount: "cnrm-system-project-id@kasna-test-landingzone.iam.gserviceaccount.com" # kpt-set: cnrm-system-${project_id}@${management_project_id}.iam.gserviceaccount.com
