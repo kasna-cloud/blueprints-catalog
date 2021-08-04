@@ -2,7 +2,7 @@ apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
 kind: Project
 metadata:
   name: project-id # kpt-set: ${project-name}
-  namespace: projects # kpt-set: ${project-namespace}
+  namespace: hierarchy # kpt-set: ${hierarchy-namespace}
   annotations:
     cnrm.cloud.google.com/auto-create-network: "false"
     cnrm.cloud.google.com/project-id: kasna-test-landingzone # kpt-set: ${management-project-id}
@@ -14,3 +14,5 @@ spec:
   name: project-id # kpt-set: ${project-id}
   billingAccountRef:
     external: "AAAAAA-BBBBBB-CCCCCC" # kpt-set: ${billing-account-id}
+  folderRef:
+    name: dev.apps
