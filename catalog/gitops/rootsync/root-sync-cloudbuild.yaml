@@ -1,0 +1,50 @@
+# root-sync-cloudbuild.yaml
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud:latest'
+    volumes:
+      - name: source-code
+        path: /source-code
+    args:
+      - '-c'
+      - >
+        set -e
+        git config --global user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)')
+    dir: /source-code
+    entrypoint: /bin/sh
+    id: gcloud account
+  - name: 'gcr.io/kpt-dev/kpt:v1.0.0-beta.1'
+    volumes:
+      - name: source-code
+        path: /source-code
+    args:
+      - '-c'
+      - |
+        set -eo pipefail
+        kpt pkg get ${_REPO_URI}/catalog/landing-zone@master /source-code/${_ADMIN_CONFIG}
+        kpt fn eval --image gcr.io/kpt-fn/apply-setters:v0.1 --truncate-output=false -- $(SOURCE_REPO) org-id=${_ORG_ID} group-billing-admins=${_GROUP_BILLING_ADMINS} group-org-admins=${_GROUP_ORG_ADMINS} management-namespace=${_MANAGEMENT_NAMESPACE} management-project-id=${_PROJECT_ID}
+    entrypoint: /bin/bash
+    dir: /source-code
+    id: kpt functions
+    waitFor:
+      - gcloud account
+    timeout: 600s
+  - name: 'gcr.io/cloud-builders/gcloud:latest'
+    volumes:
+    - name: source-code
+      path: /source-code
+    args:
+      - '-c'
+      - |
+          cd /source-code/${_ADMIN_CONFIG}
+          git config --global user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)')
+          git init -b main
+          git remote add google https://source.developers.google.com/p/${_PROJECT_ID}/r/${_SOURCE_REPO}
+          git add .
+          git status
+          git commit -m "Initialise admin-config"
+          git push google main
+    dir: /source-code
+    entrypoint: /bin/sh
+    id: Git commands
+    waitFor:
+      - kpt functions
