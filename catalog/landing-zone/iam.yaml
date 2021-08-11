@@ -19,7 +19,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
 spec:
-  member: group:test_lz_dev@test.kasna.com.au
+  member: group:gcp-organization-admins@example.com # kpt-set: group:${group-org-admins}
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Organization
@@ -34,24 +34,9 @@ metadata:
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
 spec:
-  member: user:troy.bebee@kasna.com.au
+  member: group:gcp-billing-admins@example.com # kpt-set: group:${group-billing-admins}
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Organization
     external: "123456789012" # kpt-set: ${org-id}
   role: roles/billing.admin
----
-apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPolicyMember
-metadata: # kpt-merge: config-control/billing-admins-iam
-  name: project-manager-iam
-  namespace: config-control # kpt-set: ${management-namespace}
-  annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
-spec:
-  member: user:troy.bebee@kasna.com.au
-  resourceRef:
-    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-    kind: Organization
-    external: "923715671876" # kpt-set: ${org-id}
-  role: roles/billing.projectManager
