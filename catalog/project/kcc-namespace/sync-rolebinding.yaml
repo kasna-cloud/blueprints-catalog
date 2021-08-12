@@ -4,6 +4,8 @@ kind: RoleBinding
 metadata:
   name: syncs-repo
   namespace: projects # kpt-set: ${projects-namespace}
+  annotations:
+        iam.gke.io/gcp-service-account: 915663602069-compute@developer.gserviceaccount.com
 roleRef:
   name: cluster-admin
   kind: ClusterRole
@@ -12,6 +14,3 @@ subjects:
   - kind: ServiceAccount
     name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
     namespace: config-management-system
-    metadata:
-      annotations:
-        iam.gke.io/gcp-service-account: 915663602069-compute@developer.gserviceaccount.com
