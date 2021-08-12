@@ -3,7 +3,7 @@ kind: ConfigConnectorContext
 metadata:
   # you can only have one ConfigConnectorContext per Namespace
   name: configconnectorcontext.core.cnrm.cloud.google.com
-  namespace: projects # kpt-set: ${projects-namespace}
+  namespace: project-name # kpt-set: ${project-name}
 spec:
   # The Google Service Account used to authenticate Google Cloud APIs in this Namespace
   # Convention name based
