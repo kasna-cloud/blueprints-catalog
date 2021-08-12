@@ -2,10 +2,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 # sync-rolebinding.yaml
 kind: RoleBinding
 metadata:
-  name: syncs-repo
+  name: sync-repo # kpt-set: ${sync-repo-project-name}
   namespace: projects # kpt-set: ${projects-namespace}
-  annotations:
-        iam.gke.io/gcp-service-account: 915663602069-compute@developer.gserviceaccount.com
 roleRef:
   name: cluster-admin
   kind: ClusterRole
