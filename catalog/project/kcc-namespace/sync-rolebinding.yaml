@@ -9,6 +9,9 @@ roleRef:
   kind: ClusterRole
   apiGroup: rbac.authorization.k8s.io
 subjects:
-  - name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
+  - kind: ServiceAccount
+    name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
     namespace: config-management-system
-    kind: ServiceAccount
+    apiGroup: rbac.authorization.k8s.io
+    annotations:
+      iam.gke.io/gcp-service-account: 915663602069-compute@developer.gserviceaccount.com
