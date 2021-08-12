@@ -2,7 +2,7 @@ apiVersion: configsync.gke.io/v1alpha1
 kind: RepoSync
 metadata:
   name: repo-sync
-  namespace: projects-namespace # kpt-set: ${projects-namespace}
+  namespace: project-name # kpt-set: ${project-name}
 spec:
   git:
     auth: gcenode
