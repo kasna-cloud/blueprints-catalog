@@ -3,7 +3,7 @@
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMServiceAccount
 metadata:
-  name: project-id # kpt-set: ${project-id}
+  name: project-name # kpt-set: ${project-name}
   namespace: config-control # kpt-set: ${management-namespace}
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
@@ -17,22 +17,22 @@ metadata:
   name: configconnectorcontext.core.cnrm.cloud.google.com
   namespace: project-namespace # kpt-set: ${project-name}
 spec:
-  googleServiceAccount: project-id@management-project-id.iam.gserviceaccount.com # kpt-set: ${project-id}@${management-project-id}.iam.gserviceaccount.com
+  googleServiceAccount: project-name@management-project-id.iam.gserviceaccount.com # kpt-set: ${project-name}@${management-project-id}.iam.gserviceaccount.com
 ---
 # Allow KCC's Kubernetes Service Account to use the GCP ServiceAccount
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
 metadata:
-  name: project-id-sa-workload-identity-binding # kpt-set: ${project-id}-sa-workload-identity-binding
+  name: project-name-sa-workload-identity-binding # kpt-set: ${project-name}-sa-workload-identity-binding
   namespace: config-control # kpt-set: ${management-namespace}
   annotations:
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
   resourceRef:
-    name: project-id # kpt-set: ${project-id}
+    name: project-name # kpt-set: ${project-name}
     apiVersion: iam.cnrm.cloud.google.com/v1beta1
     kind: IAMServiceAccount
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
-        - member: serviceAccount:management-project-id.svc.id.goog[cnrm-system/cnrm-controller-manager-project-id] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[cnrm-system/cnrm-controller-manager-${project-id}]
+        - member: serviceAccount:management-project-id.svc.id.goog[cnrm-system/cnrm-controller-manager-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[cnrm-system/cnrm-controller-manager-${project-name}]
