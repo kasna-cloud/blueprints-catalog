@@ -15,7 +15,7 @@ metadata:
     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  member: "serviceAccount:project-id@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-id}@${management-project-id}.iam.gserviceaccount.com
+  member: "serviceAccount:project-name@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}@${management-project-id}.iam.gserviceaccount.com
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Organization
@@ -31,7 +31,7 @@ metadata:
     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  member: "serviceAccount:project-id@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-id}@${management-project-id}.iam.gserviceaccount.com
+  member: "serviceAccount:project-name@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}@${management-project-id}.iam.gserviceaccount.com
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Organization
@@ -47,7 +47,7 @@ metadata:
     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  member: "serviceAccount:project-id@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-id}@${management-project-id}.iam.gserviceaccount.com
+  member: "serviceAccount:project-name@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}@${management-project-id}.iam.gserviceaccount.com
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Organization
@@ -62,7 +62,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  member: "serviceAccount:project-id@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-id}@${management-project-id}.iam.gserviceaccount.com
+  member: "serviceAccount:project-name@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}@${management-project-id}.iam.gserviceaccount.com
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Organization
@@ -77,7 +77,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  member: "serviceAccount:project-id@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-id}@${management-project-id}.iam.gserviceaccount.com
+  member: "serviceAccount:project-name@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}@${management-project-id}.iam.gserviceaccount.com
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Organization
@@ -92,7 +92,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  member: management-project-id.svc.id.goog[cnrm-system/cnrm-controller-manager-project-id] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[cnrm-system/cnrm-controller-manager-${project-id}]
+  member: management-project-id.svc.id.goog[cnrm-system/cnrm-controller-manager-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[cnrm-system/cnrm-controller-manager-${project-name}]
   resourceRef:
     name: project-id # kpt-set: ${project-id}
     apiVersion: iam.cnrm.cloud.google.com/v1beta1
