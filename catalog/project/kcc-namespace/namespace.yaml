@@ -92,7 +92,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  member: 915663602069-compute@developer.gserviceaccount.com
+  member: serviceAccount:915663602069-compute@developer.gserviceaccount.com
   resourceRef:
     name: project-id # kpt-set: ${project-id}
     apiVersion: iam.cnrm.cloud.google.com/v1beta1
