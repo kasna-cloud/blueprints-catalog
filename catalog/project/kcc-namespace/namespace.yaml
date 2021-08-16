@@ -72,17 +72,30 @@ spec:
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
 metadata:
-  name: project-name-source-reader # kpt-set: ${project-name}-source-reader
+  name: project-name-source-reader-permissions # kpt-set: ${project-name}-source-reader-permissions
   namespace: config-control # kpt-set: ${management-namespace}
   annotations:
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
   member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+  role: projects/management-project-id/roles/project-name-source-reader-role # kpt-set: projects/${management-project-id}/roles/${project-name}-source-reader-role
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: SourceRepoRepository
     name: project-id # kpt-set: ${project-id}
-  role: roles/source.reader
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMCustomRole
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+  name: project-name-source-reader-role # kpt-set: ${project-name}-source-reader-role
+spec:
+  title: Source Reader Custom Role
+  description: This role only contains one permission - read
+  permissions:
+    - source.repos.get
+  stage: GA
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
