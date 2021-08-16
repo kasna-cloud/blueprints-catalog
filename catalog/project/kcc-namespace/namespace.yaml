@@ -88,13 +88,13 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
 metadata:
   name: project-id-workload-identity-binding # kpt-set: ${project-id}-workload-identity-binding
-  namespace: config-control # kpt-set: ${management-namespace}
+  namespace: config-management-system
   annotations:
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
   member: serviceAccount:915663602069-compute@developer.gserviceaccount.com
   resourceRef:
-    name: project-id # kpt-set: ${project-id}
+    name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
     apiVersion: iam.cnrm.cloud.google.com/v1beta1
     kind: IAMServiceAccount
   role: roles/iam.workloadIdentityUser
