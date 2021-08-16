@@ -36,4 +36,4 @@ spec:
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
-        - member: serviceAccount:management-project-id.svc.id.goog[config-management-system/cnrm-controller-manager-project-id] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/ns-reconciler-${project-id}]
+        - member: serviceAccount:management-project-id.svc.id.goog[config-management-system/cnrm-controller-manager-project-id] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/cnrm-controller-manager-${project-id}]

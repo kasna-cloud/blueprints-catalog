@@ -9,5 +9,5 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 subjects:
   - kind: ServiceAccount
-    name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
+    name: project-name # kpt-set: ${project-name}
     namespace: config-management-system
