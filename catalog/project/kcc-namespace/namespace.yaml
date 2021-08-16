@@ -83,3 +83,18 @@ spec:
     kind: Organization
     external: "123456789012" # kpt-set: ${org-id}
   role: roles/serviceusage.serviceUsageAdmin
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: project-id-workload-identity-binding # kpt-set: ${project-id}-workload-identity-binding
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+spec:
+  member: 915663602069-compute@developer.gserviceaccount.com
+  resourceRef:
+    name: project-id # kpt-set: ${project-id}
+    apiVersion: iam.cnrm.cloud.google.com/v1beta1
+    kind: IAMServiceAccount
+  role: roles/iam.workloadIdentityUser
