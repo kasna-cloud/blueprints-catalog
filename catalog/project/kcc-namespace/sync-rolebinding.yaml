@@ -8,6 +8,6 @@ roleRef:
   kind: ClusterRole
   apiGroup: rbac.authorization.k8s.io
 subjects:
-  - name: cnrm-controller-manager-project-id # kpt-set: cnrm-controller-manager-${project-id}
+  - name: cnrm-controller-manager-project-name # kpt-set: cnrm-controller-manager-${project-name}
     kind: ServiceAccount
     namespace: cnrm-system
