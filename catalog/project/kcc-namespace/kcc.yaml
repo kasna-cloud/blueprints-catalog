@@ -3,37 +3,37 @@
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMServiceAccount
 metadata:
-  name: project-name # kpt-set: ${project-name}
+  name: project-id # kpt-set: ${project-id}
   namespace: config-control # kpt-set: ${management-namespace}
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  displayName: project-name # kpt-set: ${project-name}
+  displayName: project-id # kpt-set: ${project-id}
 ---
 apiVersion: core.cnrm.cloud.google.com/v1beta1
 kind: ConfigConnectorContext
 metadata:
   name: configconnectorcontext.core.cnrm.cloud.google.com
-  namespace: project-name # kpt-set: ${project-name}
+  namespace: project-namespace # kpt-set: ${project-name}
 spec:
-  googleServiceAccount: project-name@management-project-id.iam.gserviceaccount.com # kpt-set: ${project-name}@${management-project-id}.iam.gserviceaccount.com
+  googleServiceAccount: project-id@management-project-id.iam.gserviceaccount.com # kpt-set: ${project-id}@${management-project-id}.iam.gserviceaccount.com
 ---
 # Allow KCC's Kubernetes Service Account to use the GCP ServiceAccount
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
 metadata:
-  name: project-name-sa-workload-identity-binding # kpt-set: ${project-name}-sa-workload-identity-binding
+  name: project-id-sa-workload-identity-binding # kpt-set: ${project-id}-sa-workload-identity-binding
   namespace: config-control # kpt-set: ${management-namespace}
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/kcc-namespace/v0.2.0
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
   resourceRef:
-    name: project-name # kpt-set: ${project-name}
+    name: project-id # kpt-set: ${project-id}
     apiVersion: iam.cnrm.cloud.google.com/v1beta1
     kind: IAMServiceAccount
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
-        - member: serviceAccount:management-project-id.svc.id.goog[config-management-system/cnrm-controller-manager-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/ns-reconciler-${project-name}]
+        - member: serviceAccount:management-project-id.svc.id.goog[config-management-system/cnrm-controller-manager-project-id] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/ns-reconciler-${project-id}]
