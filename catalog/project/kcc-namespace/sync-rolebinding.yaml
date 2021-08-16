@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 # sync-rolebinding.yaml
 kind: RoleBinding
 metadata:
-  name: sync-repo # kpt-set: ${sync-repo-project-name}
+  name: sync-repo # kpt-set: sync-repo-${project-name}
   namespace: projects # kpt-set: ${projects-namespace}
 roleRef:
   name: cluster-admin
@@ -12,11 +12,3 @@ subjects:
   - kind: ServiceAccount
     name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
     namespace: config-management-system
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
-  namespace: config-management-system
-  annotations:
-    iam.gke.io/gcp-service-account: 915663602069-compute@developer.gserviceaccount.com
