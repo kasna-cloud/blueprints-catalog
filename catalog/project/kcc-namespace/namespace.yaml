@@ -85,16 +85,18 @@ spec:
   role: roles/serviceusage.serviceUsageAdmin
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPolicyMember
+kind: IAMPartialPolicy
 metadata:
-  name: project-id-workload-identity-binding # kpt-set: ${project-id}-workload-identity-binding
+  name: project-id-sa-workload-identity-binding # kpt-set: ${project-id}-sa-workload-identity-binding
   namespace: config-control # kpt-set: ${management-namespace}
   annotations:
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  member: serviceAccount:management-project-id.svc.id.goog[config-management-system/cnrm-controller-manager-project-id] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/cnrm-controller-manager-${project-id}]
   resourceRef:
     name: project-id # kpt-set: ${project-id}
     apiVersion: iam.cnrm.cloud.google.com/v1beta1
     kind: IAMServiceAccount
-  role: roles/iam.workloadIdentityUser
+  bindings:
+    - role: roles/iam.workloadIdentityUser
+      members:
+        - member: serviceAccount:management-project-id.svc.id.goog[cnrm-system/cnrm-controller-manager-project-id] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[cnrm-system/cnrm-controller-manager-${project-id}]
