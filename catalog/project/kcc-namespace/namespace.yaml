@@ -81,7 +81,7 @@ spec:
   role: projects/management-project-id/roles/project-name-source-reader-role # kpt-set: projects/${management-project-id}/roles/${project-name}-source-reader-role
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-    kind: SourceRepoRepository
+    kind: Project
     name: project-id # kpt-set: ${project-id}
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
