@@ -6,83 +6,99 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 ---
+# apiVersion: iam.cnrm.cloud.google.com/v1beta1
+# kind: IAMPolicyMember
+# metadata:
+#   name: project-name-projectcreator-permissions # kpt-set: ${project-name}-projectcreator-permissions
+#   namespace: config-control # kpt-set: ${management-namespace}
+#   annotations:
+#     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+#     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+# spec:
+#   member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+#   resourceRef:
+#     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+#     kind: Organization
+#     external: "123456789012" # kpt-set: ${org-id}
+#   role: roles/resourcemanager.projectCreator
+# ---
+# apiVersion: iam.cnrm.cloud.google.com/v1beta1
+# kind: IAMPolicyMember
+# metadata:
+#   name: project-name-projectmover-permissions # kpt-set: ${project-name}-projectmover-permissions
+#   namespace: config-control # kpt-set: ${management-namespace}
+#   annotations:
+#     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+#     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+# spec:
+#   member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+#   resourceRef:
+#     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+#     kind: Organization
+#     external: "123456789012" # kpt-set: ${org-id}
+#   role: roles/resourcemanager.projectMover
+# ---
+# apiVersion: iam.cnrm.cloud.google.com/v1beta1
+# kind: IAMPolicyMember
+# metadata:
+#   name: project-name-projectdeleter-permissions # kpt-set: ${project-name}-projectdeleter-permissions
+#   namespace: config-control # kpt-set: ${management-namespace}
+#   annotations:
+#     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+#     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+# spec:
+#   member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+#   resourceRef:
+#     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+#     kind: Organization
+#     external: "123456789012" # kpt-set: ${org-id}
+#   role: roles/resourcemanager.projectDeleter
+# ---
+# apiVersion: iam.cnrm.cloud.google.com/v1beta1
+# kind: IAMPolicyMember
+# metadata:
+#   name: project-name-billinguser-permissions # kpt-set: ${project-name}-billinguser-permissions
+#   namespace: config-control # kpt-set: ${management-namespace}
+#   annotations:
+#     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+# spec:
+#   member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+#   resourceRef:
+#     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+#     kind: Organization
+#     external: "123456789012" # kpt-set: ${org-id}
+#   role: roles/billing.user
+# ---
+# apiVersion: iam.cnrm.cloud.google.com/v1beta1
+# kind: IAMPolicyMember
+# metadata:
+#   name: project-name-serviceusageadmin-permissions # kpt-set: ${project-name}-serviceusageadmin-permissions
+#   namespace: config-control # kpt-set: ${management-namespace}
+#   annotations:
+#     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+# spec:
+#   member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+#   resourceRef:
+#     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+#     kind: Organization
+#     external: "123456789012" # kpt-set: ${org-id}
+#   role: roles/serviceusage.serviceUsageAdmin
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPolicyMember
+kind: IAMPartialPolicy
 metadata:
-  name: project-name-projectcreator-permissions # kpt-set: ${project-name}-projectcreator-permissions
-  namespace: config-control # kpt-set: ${management-namespace}
+  name: iampartialpolicy-sample-project-permissions
+  namespace: config-control
   annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-    kind: Organization
-    external: "123456789012" # kpt-set: ${org-id}
-  role: roles/resourcemanager.projectCreator
----
-apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPolicyMember
-metadata:
-  name: project-name-projectmover-permissions # kpt-set: ${project-name}-projectmover-permissions
-  namespace: config-control # kpt-set: ${management-namespace}
-  annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
-spec:
-  member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
-  resourceRef:
-    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-    kind: Organization
-    external: "123456789012" # kpt-set: ${org-id}
-  role: roles/resourcemanager.projectMover
----
-apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPolicyMember
-metadata:
-  name: project-name-projectdeleter-permissions # kpt-set: ${project-name}-projectdeleter-permissions
-  namespace: config-control # kpt-set: ${management-namespace}
-  annotations:
-    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
-spec:
-  member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
-  resourceRef:
-    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-    kind: Organization
-    external: "123456789012" # kpt-set: ${org-id}
-  role: roles/resourcemanager.projectDeleter
----
-apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPolicyMember
-metadata:
-  name: project-name-billinguser-permissions # kpt-set: ${project-name}-billinguser-permissions
-  namespace: config-control # kpt-set: ${management-namespace}
-  annotations:
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
-spec:
-  member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
-  resourceRef:
-    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-    kind: Organization
-    external: "123456789012" # kpt-set: ${org-id}
-  role: roles/billing.user
----
-apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPolicyMember
-metadata:
-  name: project-name-serviceusageadmin-permissions # kpt-set: ${project-name}-serviceusageadmin-permissions
-  namespace: config-control # kpt-set: ${management-namespace}
-  annotations:
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
-spec:
-  member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
-  resourceRef:
-    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-    kind: Organization
-    external: "123456789012" # kpt-set: ${org-id}
-  role: roles/serviceusage.serviceUsageAdmin
+    kind: IAMServiceAccount
+    external: projects/kasna-test-landingzone/serviceAccounts/project-name-sa@kasna-test-landingzone.iam.gserviceaccount.com # kpt-set: projects/kasna-test-landingzone/serviceAccounts/${project-name}-sa@kasna-test-landingzone.iam.gserviceaccount.com
+  bindings:
+    - role: roles/owner
+      members:
+        - member: management-project-id.svc.id.goog[config-management-system/ns-reconciler-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/ns-reconciler-${project-name}]
 ---
 # Allow KCC's Kubernetes Service Account to use the GCP ServiceAccount
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
