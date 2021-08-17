@@ -2,12 +2,28 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: sync-repo # kpt-set: sync-repo-${project-id}
-  namespace: projects # kpt-set: ${project-name}
+  namespace: project-name # kpt-set: ${project-name}
 roleRef:
   name: cluster-admin
   kind: ClusterRole
   apiGroup: rbac.authorization.k8s.io
 subjects:
-  - name: cnrm-controller-manager-project-name # kpt-set: cnrm-controller-manager-${project-name}
+  - name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
     kind: ServiceAccount
-    namespace: cnrm-system
+    namespace: config-management-system
+---
+# Give KCC for this project's namespace permission to read KCC resources in the projects namespace.
+# This allows IAMMemberPolicy in this project's namespace to reference the project in the projects namespace.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: cnrm-project-viewer-project-name # kpt-set: cnrm-project-viewer-${project-name}
+  namespace: projects-name # kpt-set: ${projects-name}
+roleRef:
+  name: cnrm-viewer
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
+    namespace: config-management-system
+    kind: ServiceAccount

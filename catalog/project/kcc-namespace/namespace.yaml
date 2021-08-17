@@ -6,21 +6,21 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 ---
-# apiVersion: iam.cnrm.cloud.google.com/v1beta1
-# kind: IAMPolicyMember
-# metadata:
-#   name: project-name-projectcreator-permissions # kpt-set: ${project-name}-projectcreator-permissions
-#   namespace: config-control # kpt-set: ${management-namespace}
-#   annotations:
-#     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
-#     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
-# spec:
-#   member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
-#   resourceRef:
-#     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-#     kind: Organization
-#     external: "123456789012" # kpt-set: ${org-id}
-#   role: roles/resourcemanager.projectCreator
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: project-name-projectcreator-permissions # kpt-set: ${project-name}-projectcreator-permissions
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Organization
+    external: "123456789012" # kpt-set: ${org-id}
+  role: roles/owner
 # ---
 # apiVersion: iam.cnrm.cloud.google.com/v1beta1
 # kind: IAMPolicyMember
@@ -83,22 +83,6 @@ metadata:
 #     kind: Organization
 #     external: "123456789012" # kpt-set: ${org-id}
 #   role: roles/serviceusage.serviceUsageAdmin
-apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPartialPolicy
-metadata:
-  name: iampartialpolicy-sample-project-permissions
-  namespace: project-name # kpt-set: ${project-name}
-  annotations:
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
-spec:
-  resourceRef:
-    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-    kind: Project
-    external: project-id # kpt-set: ${project-id}
-  bindings:
-    - role: roles/owner
-      members:
-        - member: management-project-id.svc.id.goog[config-management-system/ns-reconciler-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/ns-reconciler-${project-name}]
 ---
 # Allow KCC's Kubernetes Service Account to use the GCP ServiceAccount
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
