@@ -3,7 +3,7 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
 metadata:
   name: kcc-project-name-owners-permissions # kpt-set: kcc-${project-name}-owners-permissions
-  namespace: project-name # kpt-set: ${project-name}
+  namespace: projects
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/kcc-namespace/v0.3.0
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
