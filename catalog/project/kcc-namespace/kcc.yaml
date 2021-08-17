@@ -19,6 +19,19 @@ metadata:
 spec:
   googleServiceAccount: project-name-sa@management-project-id.iam.gserviceaccount.com # kpt-set: ${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
 ---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicy
+metadata:
+  name: iampolicy-workload-identity
+spec:
+  resourceRef:
+    apiVersion: iam.cnrm.cloud.google.com/v1beta1
+    kind: IAMServiceAccount
+    name: project-name-sa # kpt-set: ${project-name}-sa
+  bindings:
+    - role: roles/iam.workloadIdentityUser
+      members:
+        - member: serviceAccount:management-project-id.svc.id.goog[cnrm-system/cnrm-controller-manager-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[cnrm-system/cnrm-controller-manager-${project-name}]
 # Allow KCC's Kubernetes Service Account to use the GCP ServiceAccount
 # apiVersion: iam.cnrm.cloud.google.com/v1beta1
 # kind: IAMPartialPolicy
