@@ -95,7 +95,7 @@ spec:
   member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
   resourceRef:
     apiVersion: sourcerepo.cnrm.cloud.google.com/v1beta1
-    kind: Project
+    kind: Organization
     external: project-id # kpt-set: ${project-id}
   role: roles/source.reader
 ---
@@ -109,7 +109,7 @@ metadata:
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
   resourceRef:
-    external: projects/kasna-test-landingzone/serviceAccounts/915663602069-compute@developer.gserviceaccount.com
+    external: projects/kasna-test-landingzone/serviceAccounts/project-name-sa@management-project-id.iam.gserviceaccount.com # kpt-set: ${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
     apiVersion: iam.cnrm.cloud.google.com/v1beta1
     kind: IAMServiceAccount
   bindings:
