@@ -32,7 +32,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata: # kpt-merge: hierarchy/allow-resource-reference-from-hierarchy
   name: allow-project-id-reference-from-hierarchy # kpt-set: allow-${project-id}-reference-from-hierarchy
-  namespace: project-name # kpt-set: ${project-name}
+  namespace: hierarchy
 roleRef:
   name: cnrm-viewer
   kind: ClusterRole
