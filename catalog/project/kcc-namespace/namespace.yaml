@@ -84,6 +84,21 @@ spec:
     external: "123456789012" # kpt-set: ${org-id}
   role: roles/serviceusage.serviceUsageAdmin
 ---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: project-name-sourcereader-permissions # kpt-set: ${project-name}-sourcereader-permissions
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: sourcerepo.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: project-id # kpt-set: ${project-id}
+  role: roles/source.reader
+---
 # Allow KCC's Kubernetes Service Account to use the GCP ServiceAccount
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
