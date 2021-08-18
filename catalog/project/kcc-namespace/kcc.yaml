@@ -32,7 +32,7 @@ spec:
   bindings:
     - role: roles/source.reader
       members: 
-        - member: management-project-id.svc.id.goog[config-management-system/ns-reconciler-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/ns-reconciler-${project-name}]
+        - serviceAccount:management-project-id.svc.id.goog[config-management-system/ns-reconciler-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/ns-reconciler-${project-name}]
     - role: roles/iam.workloadIdentityUser
       members: 
         - serviceAccount:management-project-id.svc.id.goog[cnrm-system/cnrm-controller-manager-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[cnrm-system/cnrm-controller-manager-${project-name}]
