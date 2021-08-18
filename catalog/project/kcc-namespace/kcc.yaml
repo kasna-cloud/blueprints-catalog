@@ -9,7 +9,7 @@ metadata:
     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  displayName: project-id # kpt-set: ${project-id}
+  displayName: project-name-sa # kpt-set: ${project-name}-sa
 ---
 apiVersion: core.cnrm.cloud.google.com/v1beta1
 kind: ConfigConnectorContext
