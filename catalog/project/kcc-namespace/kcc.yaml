@@ -22,7 +22,7 @@ spec:
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicy
 metadata:
-  name: iampolicy-workload-identity
+  name: iampolicy-workload-identity # kpt-set: ${project-name}-iampolicy-workload-identity
   namespace: config-control # kpt-set: ${management-namespace}
 spec:
   resourceRef:
@@ -30,6 +30,7 @@ spec:
     kind: IAMServiceAccount
     name: project-name-sa # kpt-set: ${project-name}-sa
   bindings:
+    - role: roles/source.reader
     - role: roles/iam.workloadIdentityUser
       members: 
         - serviceAccount:management-project-id.svc.id.goog[cnrm-system/cnrm-controller-manager-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[cnrm-system/cnrm-controller-manager-${project-name}]
