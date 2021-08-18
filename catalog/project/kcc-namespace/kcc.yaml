@@ -33,3 +33,11 @@ spec:
     - role: roles/iam.workloadIdentityUser
       members: 
         - serviceAccount:management-project-id.svc.id.goog[cnrm-system/cnrm-controller-manager-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[cnrm-system/cnrm-controller-manager-${project-name}]
+---
+apiVersion: core.cnrm.cloud.google.com/v1beta1
+kind: ConfigConnectorContext
+metadata:
+  name: configconnectorcontext.core.cnrm.cloud.google.com
+  namespace: corporate
+spec:
+  googleServiceAccount: corporate-sa@management-project-id.iam.gserviceaccount.com
