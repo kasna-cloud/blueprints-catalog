@@ -52,6 +52,6 @@ roleRef:
   kind: ClusterRole
   apiGroup: rbac.authorization.k8s.io
 subjects:
-  - name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
+  - name: cnrm-controller-manager-project-name # kpt-set: cnrm-controller-manager-${project-name}
     kind: ServiceAccount
-    namespace: config-management-system
+    namespace: cnrm-system
