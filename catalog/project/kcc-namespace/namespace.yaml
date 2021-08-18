@@ -96,7 +96,7 @@ spec:
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project
-    external: project-id # kpt-set: ${project-id}
+    external: management-project-id # kpt-set: ${management-project-id}
   role: roles/source.reader
 ---
 # Allow KCC's Kubernetes Service Account to use the GCP ServiceAccount
