@@ -108,11 +108,11 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
+  bindings:
+    - members:
+        - member: serviceAccount:management-project-id.svc.id.goog[config-management-system/ns-reconciler-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/ns-reconciler-${project-name}]
+      role: roles/iam.workloadIdentityUser
   resourceRef:
-    external: projects/kasna-test-landingzone/serviceAccounts/project-name-sa@management-project-id.iam.gserviceaccount.com # kpt-set: projects/${management-project-id}/serviceAccounts/${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
     apiVersion: iam.cnrm.cloud.google.com/v1beta1
     kind: IAMServiceAccount
-  bindings:
-    - role: roles/iam.workloadIdentityUser
-      members:
-        - member: serviceAccount:management-project-id.svc.id.goog[config-management-system/ns-reconciler-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/ns-reconciler-${project-name}]
+    external: projects/kasna-test-landingzone/serviceAccounts/915663602069-compute@developer.gserviceaccount.com

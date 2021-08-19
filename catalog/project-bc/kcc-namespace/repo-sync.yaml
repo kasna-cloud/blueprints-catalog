@@ -1,0 +1,12 @@
+apiVersion: configsync.gke.io/v1alpha1
+kind: RepoSync
+metadata:
+  name: repo-sync
+  namespace: project-name # kpt-set: ${project-name}
+spec:
+  git:
+    auth: gcenode
+    branch: main
+    dir: /
+    repo: https://source.developers.google.com/p/management-project-id/r/project-id # kpt-set: https://source.developers.google.com/p/${management-project-id}/r/${project-id}
+  sourceFormat: unstructured
