@@ -99,6 +99,21 @@ spec:
     external: management-project-id # kpt-set: ${management-project-id}
   role: roles/source.reader
 ---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: project-name-telstra-owner # kpt-set: ${project-name}-telstra-owner
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: management-project-id # kpt-set: ${management-project-id}
+  role: roles/owner
+---
 # Allow KCC's Kubernetes Service Account to use the GCP ServiceAccount
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
