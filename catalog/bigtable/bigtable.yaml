@@ -2,7 +2,7 @@ apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
   name: bigtabletableadmin.googleapis.com
-  namespace: projects # kpt-set: ${management-namespace}
+  namespace: config-control
 spec:
   projectRef:
     external: projects/kasna-test-landingzone
@@ -11,25 +11,24 @@ apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
   name: bigtableadmin.googleapis.com
-  namespace: config-control # kpt-set: ${management-namespace}
+  namespace: config-control
 spec:
   projectRef:
     external: projects/kasna-test-landingzone
 ---
-kubectl apply -f - <<EOF
 apiVersion: bigtable.cnrm.cloud.google.com/v1beta1
 kind: BigtableInstance
 metadata:
-  name: blueprints-project-bigtableinstance # kpt-set: ${name}
+  name: blueprints-uniquekasna # kpt-set: ${name}
+  namespace: config-control
   annotations:
     cnrm.cloud.google.com/project-id: kasna-test-landingzone
 spec:
-  displayName: BigtableS1
+  displayName: bigtable-1
   cluster:
-  - clusterId: bigtableinstance1
+  - clusterId: bigtableuniqqsa
     zone: us-central1-a
     numNodes: 3
-  - clusterId: bigtableinstance2
+  - clusterId: bigtableuniqqsa
     zone: us-west1-a
     numNodes: 3
-EOF

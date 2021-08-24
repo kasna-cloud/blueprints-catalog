@@ -5,4 +5,4 @@ metadata:
 data:
   name: bigquerydan2
   management-project-id: kasna-test-landingzone
-  projects-namespace: config-control
+  namespace: config-control
