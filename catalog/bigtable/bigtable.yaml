@@ -1,21 +1,4 @@
-apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
-kind: Service
-metadata:
-  name: bigtabletableadmin.googleapis.com
-  namespace: config-control
-spec:
-  projectRef:
-    external: projects/kasna-test-landingzone
----
-apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
-kind: Service
-metadata:
-  name: bigtableadmin.googleapis.com
-  namespace: config-control
-spec:
-  projectRef:
-    external: projects/kasna-test-landingzone
----
+kubectl apply -f - <<EOF
 apiVersion: bigtable.cnrm.cloud.google.com/v1beta1
 kind: BigtableInstance
 metadata:
@@ -32,3 +15,4 @@ spec:
   - clusterId: bigtableuniqqsa
     zone: us-west1-a
     numNodes: 3
+EOF

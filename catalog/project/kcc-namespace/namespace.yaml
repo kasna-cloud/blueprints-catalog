@@ -111,9 +111,11 @@ spec:
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project
-    external: management-project-id # kpt-set: ${management-project-id}
+    external: projects/management-project-id # kpt-set: ${management-project-id}
   role: roles/owner
 ---
+
+
 # Allow KCC's Kubernetes Service Account to use the GCP ServiceAccount
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
