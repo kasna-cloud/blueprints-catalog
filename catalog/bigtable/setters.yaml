@@ -5,4 +5,5 @@ metadata:
 data:
   name: bigtable1
   projects-namespace: projects
-  management-project-id: management-project-id
+  management-namespace: config-control
+  management-project-id: kasna-test-landingzone

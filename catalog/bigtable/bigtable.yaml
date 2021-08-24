@@ -2,31 +2,34 @@ apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
   name: bigtabletableadmin.googleapis.com
-  projects-namespace: projects # kpt-set: ${projects-namespace}
-  annotations:
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+  namespace: projects # kpt-set: ${management-namespace}
+spec:
+  projectRef:
+    external: projects/kasna-test-landingzone
 ---
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
   name: bigtableadmin.googleapis.com
-  projects-namespace: config-control # kpt-set: ${management-namespace}
-  annotations:
-    cnrm.cloud.google.com/management-project-id: management-project-id # kpt-set: ${management-project-id}
+  namespace: config-control # kpt-set: ${management-namespace}
+spec:
+  projectRef:
+    external: projects/kasna-test-landingzone
 ---
+kubectl apply -f - <<EOF
 apiVersion: bigtable.cnrm.cloud.google.com/v1beta1
 kind: BigtableInstance
 metadata:
   name: blueprints-project-bigtableinstance # kpt-set: ${name}
-  projects-namespace: config-control # kpt-set: ${management-namespace}
   annotations:
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+    cnrm.cloud.google.com/project-id: kasna-test-landingzone
 spec:
+  displayName: BigtableS1
   cluster:
-    - clusterId: bigtableinstance-dep1
-      numNodes: 3
-      zone: us-central1-a
-    - clusterId: bigtableinstance-dep2
-      numNodes: 3
-      zone: us-west1-a
-  displayName: BigtableSample
+  - clusterId: bigtableinstance1
+    zone: us-central1-a
+    numNodes: 3
+  - clusterId: bigtableinstance2
+    zone: us-west1-a
+    numNodes: 3
+EOF

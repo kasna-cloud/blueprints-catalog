@@ -81,9 +81,3 @@ gcloud alpha blueprints describe
 ```
 kubectl logs -n cnrm-system -l cnrm.cloud.google.com/component=cnrm-controller-manager -c manager 
 ```
-
-# Important
-Blueprints require a GKE cluster to operate. To save on costs, the cluster will be terminated each night. To start up a cluster follow the documentation [here](https://mantelgroup.atlassian.net/wiki/spaces/~440540889/pages/4039409672/Useful+Commands).
-
-# Working
--

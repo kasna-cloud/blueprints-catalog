@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  name: sql1
+  name: sql1-5454
   projects-namespace: projects
-  management-project-id: management-project-id
+  management-project-id: kasna-test-landingzone
