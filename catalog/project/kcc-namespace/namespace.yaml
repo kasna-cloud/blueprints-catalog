@@ -13,9 +13,9 @@ metadata:
   namespace: config-control # kpt-set: ${management-namespace}
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 spec:
-  member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+  member: "serviceAccount:project-name-sa@project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${project-id}.iam.gserviceaccount.com
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project
@@ -29,9 +29,9 @@ metadata:
   name: projects-sa-billinguser-permissions # kpt-set: ${project-name}-sa-billinguser-permissions
   namespace: config-control # kpt-set: ${management-namespace}
   annotations:
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 spec:
-  member: "serviceAccount:project-name-sa@management-project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+  member: "serviceAccount:project-name-sa@project-id.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${project-id}.iam.gserviceaccount.com
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Organization
