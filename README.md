@@ -81,3 +81,7 @@ gcloud alpha blueprints describe
 ```
 kubectl logs -n cnrm-system -l cnrm.cloud.google.com/component=cnrm-controller-manager -c manager 
 ```
+## Tested
+- Big Table
+- BigQuery
+- Cloud SQL
