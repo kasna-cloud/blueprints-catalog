@@ -1,12 +1,12 @@
 apiVersion: bigquery.cnrm.cloud.google.com/v1beta1
 kind: BigQueryDataset
 metadata:
-  name: bigquerydan1 # kpt-set: ${name}
-  namespace: config-control # kpt-set: ${namespace}
+  name: bigquery-name # kpt-set: ${name}
+  namespace: projects-namespace # kpt-set: ${projects-namespace}
   annotations:
     cnrm.cloud.google.com/delete-contents-on-destroy: "false"
 spec:
   defaultTableExpirationMs: 3600000
   description: "BigQuery Dataset Sample"
-  friendlyName: bigquerydan1 # kpt-set: ${name}
+  friendlyName: bigquery-name # kpt-set: ${name}
   location: US

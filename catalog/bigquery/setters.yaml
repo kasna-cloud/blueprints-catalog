@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  name: bigquerydan2
+  name: bigquerytelstra
   management-project-id: kasna-test-landingzone
-  namespace: config-control
+  management-namespace: config-control
+  projects-namespace: telstra

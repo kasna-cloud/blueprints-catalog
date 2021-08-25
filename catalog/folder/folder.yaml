@@ -1,9 +1,9 @@
 apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
 kind: Folder
 metadata:
-  name: kix-experiment-11 # kpt-set: ${displayName}
-  namespace: projects # kpt-set: ${projects-namespace}
+  name: folder-id # kpt-set: ${folder-id}
+  namespace: projects-namespace # kpt-set: ${projects-namespace}
 spec:
-  displayName: display-name # kpt-set: ${displayName} 
+  displayName: folder-name # kpt-set: ${folder-name} 
   folderRef:
     external: "1069581036596" # kpt-set: ${parent-folder-id}

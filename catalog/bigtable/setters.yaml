@@ -4,6 +4,6 @@ metadata:
   name: setters
 data:
   name: bigtable1
-  projects-namespace: projects
+  projects-namespace: telstra
   management-namespace: config-control
   management-project-id: kasna-test-landingzone

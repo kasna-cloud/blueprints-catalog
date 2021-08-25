@@ -1,18 +1,40 @@
-kubectl apply -f - <<EOF
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: bigtabletableadmin.googleapis.com
+  namespace: projects-namespace # kpt-set: ${projects-namespace}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: projects/kasna-test-landingzone # kpt-set: projects/${management-project-id}
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: bigtableadmin.googleapis.com
+  namespace: projects-namespace # kpt-set: ${projects-namespace}
+  annotations:
+      cnrm.cloud.google.com/deletion-policy: "abandon"
+      cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: projects/kasna-test-landingzone # kpt-set projects/${management-project-id}
+---
 apiVersion: bigtable.cnrm.cloud.google.com/v1beta1
 kind: BigtableInstance
 metadata:
-  name: blueprints-uniquekasna # kpt-set: ${name}
-  namespace: config-control
+  name: bigtableinstance-name # kpt-set: ${name}
+  namespace: projects-namespace # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/project-id: kasna-test-landingzone
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
-  displayName: bigtable-1
+  displayName: bigtable-name
   cluster:
-  - clusterId: bigtableuniqqsa
+  - clusterId: cluster-id
     zone: us-central1-a
     numNodes: 3
-  - clusterId: bigtableuniqqsa
+  - clusterId: cluster-id2
     zone: us-west1-a
     numNodes: 3
-EOF

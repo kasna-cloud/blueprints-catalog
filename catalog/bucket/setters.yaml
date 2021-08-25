@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: buckettesta9
+  name: setters
 data:
-  name: buckettesta9
-  projects-namespace: dbteam-1
-  platform-project-id: kasna-test-landingzone
+  name: telstrabucket
+  projects-namespace: telstra
+  management-project-id: kasna-test-landingzone
   storage-class: standard

@@ -114,8 +114,6 @@ spec:
     external: projects/management-project-id # kpt-set: ${management-project-id}
   role: roles/owner
 ---
-
-
 # Allow KCC's Kubernetes Service Account to use the GCP ServiceAccount
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy

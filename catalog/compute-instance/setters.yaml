@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  name: computeinstance1
-  projects-namespace: projects
-  platform-project-id: platform-project-id 
+  name: computeinstancetelstra
+  projects-namespace: telstra
+  management-project-id: kasna-test-landingzone

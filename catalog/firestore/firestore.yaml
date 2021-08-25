@@ -1,18 +1,22 @@
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
-  name: yourfirestorename # kpt-set: ${name}
-  projects-namespace: projects # kpt-set: ${projects-namespace}
+  name: firestore.googleapis.com
+  namespace: projects-namespace # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/platform-project-id: platform-project-id # kpt-set: ${platform-project-id}
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: projects/kasna-test-landingzone # kpt-set: projects/${management-project-id}
 ---
 apiVersion: firestore.cnrm.cloud.google.com/v1beta1
 kind: FirestoreIndex
 metadata:
-  name: firestoreindex-1 # kpt-set: ${name}
-  projects-namespace: projects # kpt-set: ${projects-namespace}
+  name: firestoreindex-name # kpt-set: ${name}
+  namespace: projects-namespace # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/platform-project-id: platform-project-id # kpt-set: ${platform-project-id}
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
 spec:
   collection: yourcollectionname # kpt-set: ${name}
   fields:

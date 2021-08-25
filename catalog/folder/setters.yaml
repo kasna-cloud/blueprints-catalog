@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  projects-namespace: projects
-  billing-acct-id: "014244-F1A39A-218EB5"
-  displayName: ops
+  projects-namespace: telstra
+  folder-name: shared
+  folder-id: shared12321321
   parent-folder-id: "1069581036596"
