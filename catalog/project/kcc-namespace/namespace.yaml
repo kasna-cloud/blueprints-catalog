@@ -25,7 +25,7 @@ spec:
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
 metadata:
-  name: project-name-folderadmin # kpt-set: ${project-name}-folderadmin
+  name: project-name-projectmover-permissions # kpt-set: ${project-name}-projectmover-permissions
   namespace: config-control # kpt-set: ${management-namespace}
   annotations:
     cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
@@ -117,7 +117,7 @@ spec:
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
 metadata:
-  name: project-name-telstra-owner # kpt-set: ${project-name}-telstra-owner
+  name: project-name-telstra-folder # kpt-set: ${project-name}-telstra-folder
   namespace: config-control # kpt-set: ${management-namespace}
   annotations:
     cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
