@@ -3,8 +3,9 @@ kind: ConfigMap
 metadata:
   name: setter
 data:
-  projects-namespace: projects
+  projects-namespace: telstra
+  management-project-id: kasna-test-landingzone
   config-region: regional-us-central1
-  database-name: spanner-sample-database2
-  instance-name: spanner-sample-instance2
+  database-name: spanner-sample-database
+  instance-name: spanner-sample-instance
   num-nodes: "1"

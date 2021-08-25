@@ -1,0 +1,17 @@
+apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+kind: Project
+metadata:
+  name: project-id # kpt-set: ${project-id}
+  namespace: project-name # kpt-set: ${project-name}
+  annotations:
+    cnrm.cloud.google.com/auto-create-network: "false"
+    config.kubernetes.io/function: |
+      container:
+        image: gcr.io/yakima-eap/folder-ref:latest
+spec:
+  name: project-name # kpt-set: ${project-name}
+  billingAccountRef:
+    external: "AAAAAA-BBBBBB-CCCCCC" # kpt-set: ${billing-account-id}
+  folderRef:
+    name: dev.apps
+    namespace: hierarchy # kpt-set: ${folder-namespace}

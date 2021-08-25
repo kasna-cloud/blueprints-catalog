@@ -1,12 +1,12 @@
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMCustomRole
 metadata:
-  name: iamcustomrolecloudsqlviewer
-  namespace: config-controller-system
+  name: iamcustomroletelstra
+  namespace: config-control
   annotations:
-    cnrm.cloud.google.com/project-id: kasna-test-landingzone # kpt-set: ${project-id}
+    cnrm.cloud.google.com/project-id: kasna-test-landingzone # kpt-set: ${management-project-id}
 spec:
-  description: CloudSQL Viewer
+  description: Telstra SQL Viewer
   permissions:
     - cloudsql.instances.get
     - cloudsql.instances.list
