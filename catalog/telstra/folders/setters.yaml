@@ -3,10 +3,9 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  compute-network-name: telstra-network
-  container-cluster-name: telstra
   projects-namespace: telstra
-  management-project-id: kasna-test-landingzone
-  folder-name: ops
-  folder-id: ops-telstra-u90s
+  ops-folder-name: telstra-ops
+  ops-folder-id: telstra-ops-9e02
+  workloads-folder-name: telstra-workloads
+  workloads-folder-id: telstra-workloads-9e02
   org-id: "923715671876"

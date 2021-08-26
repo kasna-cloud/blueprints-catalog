@@ -13,4 +13,4 @@ spec:
   billingAccountRef:
     external: "AAAAAA-BBBBBB-CCCCCC" # kpt-set: ${billing-account-id}
   folderRef:
-    external: "583420414642"
+    external: "61230327621"

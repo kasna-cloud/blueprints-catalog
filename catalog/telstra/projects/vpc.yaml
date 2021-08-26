@@ -93,4 +93,4 @@ spec:
   subnetworkRef:
     name: compute-network-name-subnetwork # kpt-set: ${compute-network-name}-subnetwork
     namespace: projects-namespace # kpt-set: ${projects-namespace}
----
+

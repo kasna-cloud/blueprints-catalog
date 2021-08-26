@@ -7,9 +7,6 @@ data:
   container-cluster-name: telstra
   projects-namespace: telstra
   management-project-id: kasna-test-landingzone
-  folder-name: ops
-  folder-id: ops-tel-u90p-9
-  org-id: "923715671876"
-  project-id: team1-121b
+  project-id: team1-e23s
   project-name: team1
   billing-account-id: 014244-F1A39A-218EB5
