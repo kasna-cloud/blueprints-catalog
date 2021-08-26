@@ -10,3 +10,4 @@ data:
   project-id: team1-e23s
   project-name: team1
   billing-account-id: 014244-F1A39A-218EB5
+  location: us-central1
