@@ -1,0 +1,16 @@
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeFirewall
+metadata:
+  name: compute-network-name-firewall # kpt-set: ${compute-network-name}-firewall
+  namespace: projects-namespace # kpt-set: ${projects-namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+spec:
+  deny:
+    - protocol: tcp
+    - protocol: icmp
+  direction: INGRESS
+  networkRef:
+    name: compute-network-name # kpt-set: ${compute-network-name}
+    namespace: projects-namespace # kpt-set: ${projects-namespace}
+priority: 5000
