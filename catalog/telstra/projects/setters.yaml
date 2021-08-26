@@ -3,8 +3,6 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  compute-network-name: telstra-network
-  container-cluster-name: telstra
   projects-namespace: telstra
   management-project-id: kasna-test-landingzone
   project-id: team1-e23s
