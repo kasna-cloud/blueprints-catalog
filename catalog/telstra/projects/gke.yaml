@@ -1,10 +1,10 @@
 apiVersion: container.cnrm.cloud.google.com/v1beta1
 kind: ContainerCluster
 metadata:
-  name: container-cluster-name-gke-cluster # kpt-set: ${container-cluster-name}-gke-cluster
+  name: project-name-gke # kpt-set: ${project-name}-gke-cluster
   namespace: projects-namespace # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
     cnrm.cloud.google.com/remove-default-node-pool: "false"
 spec:
   description: A routes-based cluster confined to one zone configured for development.
@@ -12,25 +12,38 @@ spec:
   initialNodeCount: 1
   clusterTelemetry:
     type: SYSTEM_ONLY
-  networkingMode: ROUTES
-  clusterIpv4Cidr: 10.96.0.0/14
+  networkingMode: VPC_NATIVE
+  networkRef:
+    name: project-name-network # kpt-set: ${project-name}-network
+    namespace: projects-namespace # kpt-set: ${projects-namespace}
+  subnetworkRef:
+    name: project-name-subnetwork # kpt-set: ${project-name}-primary-subnet
+    namespace: projects-namespace # kpt-set: ${projects-namespace}
+  ipAllocationPolicy:
+    clusterSecondaryRangeName: project-name-subnetwork # kpt-set: ${project-name}-cluster-subnet
+    servicesSecondaryRangeName: project-name-subnetwork # kpt-set: ${project-name}-services-subnet
   masterAuthorizedNetworksConfig:
     cidrBlocks:
-      - displayName: Trusted external network
+      - displayName: project-name-network # kpt-set: ${project-name}-network
         cidrBlock: 10.2.0.0/16
+  enableIntranodeVisibility: true
+  maintenancePolicy:
+    dailyMaintenanceWindow:
+      startTime: 00:00
+  workloadIdentityConfig:
+      identityNamespace: project-id.svc.id.goog # ${project-id}.svc.id.goog
   addonsConfig:
     gcePersistentDiskCsiDriverConfig:
       enabled: true
-    kalmConfig:
+    networkPolicyConfig:
+      disabled: false
+    networkPolicy:
       enabled: true
-    horizontalPodAutoscaling:
-      disabled: true
-    httpLoadBalancing:
-      disabled: true
-  networkRef:
-    name: compute-network-name # kpt-set: ${compute-network-name}
-    namespace: projects-namespace # kpt-set: ${projects-namespace}
-  subnetworkRef:
-    name: compute-network-name-subnetwork # kpt-set: ${compute-network-name}-subnetwork
-    namespace: projects-namespace # kpt-set: ${projects-namespace}
-
+    dnsCacheConfig:
+      enabled: true
+    configConnectorConfig:
+      enabled: true
+    podSecurityPolicyConfig:
+      enabled: true
+    verticalPodAutoscaling:
+      enabled: true
