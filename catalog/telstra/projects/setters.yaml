@@ -3,9 +3,10 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  projects-namespace: telstra
   management-project-id: kasna-test-landingzone
-  project-id: team1-e23s
-  project-name: team1
+  projects-namespace: telstra
+  project-name: telstra-team1
+  project-id: team1-lama083j
   billing-account-id: 014244-F1A39A-218EB5
   location: us-central1
+  folder-id: 183622773365
