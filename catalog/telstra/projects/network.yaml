@@ -1,10 +1,10 @@
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeNetwork
 metadata:
-  name: compute-network-name # kpt-set: ${compute-network-name}
+  name: project-name-network # kpt-set: ${project-name}-network
   namespace: projects-namespace # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 spec:
   routingMode: REGIONAL
   autoCreateSubnetworks: false
@@ -12,17 +12,17 @@ spec:
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeSubnetwork
 metadata:
-  name: compute-network-name-subnetwork # kpt-set: ${compute-network-name}-subnetwork
+  name: project-name-subnetwork # kpt-set: ${project-name}-subnetwork
   namespace: projects-namespace # kpt-set: ${projects-namespace}
   annotations:
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+    cnrm.cloud.google.com/project-id: project-id # kpt-set: ${project-id}
 spec:
   ipCidrRange: 10.2.0.0/16
   region: us-central1
-  description: My subnet
+  description: description # kpt-set: ${project-name}-subnetwork
   privateIpGoogleAccess: true
   networkRef:
-    name: compute-network-name # kpt-set: ${compute-network-name}
+    name: project-name-network # kpt-set: ${project-name}-network
     namespace: projects-namespace # kpt-set: ${projects-namespace}
   logConfig:
     aggregationInterval: INTERVAL_10_MIN
