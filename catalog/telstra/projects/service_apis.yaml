@@ -8,41 +8,4 @@ metadata:
     cnrm.cloud.google.com/disable-dependent-services: "false"
 spec:
   projectRef:
-    external: projects/management-project-id # kpt-set: projects/${management-project-id}
----
-apiVersion: container.cnrm.cloud.google.com/v1beta1
-kind: ContainerCluster
-metadata:
-  name: container-cluster-name-gke-cluster # kpt-set: ${container-cluster-name}-gke-cluster
-  namespace: projects-namespace # kpt-set: ${projects-namespace}
-  annotations:
-    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
-    cnrm.cloud.google.com/remove-default-node-pool: "false"
-spec:
-  description: A routes-based cluster confined to one zone configured for development.
-  location: location # kpt-set: ${location}
-  initialNodeCount: 1
-  clusterTelemetry:
-    type: SYSTEM_ONLY
-  networkingMode: ROUTES
-  clusterIpv4Cidr: 10.96.0.0/14
-  masterAuthorizedNetworksConfig:
-    cidrBlocks:
-      - displayName: Trusted external network
-        cidrBlock: 10.2.0.0/16
-  addonsConfig:
-    gcePersistentDiskCsiDriverConfig:
-      enabled: true
-    kalmConfig:
-      enabled: true
-    horizontalPodAutoscaling:
-      disabled: true
-    httpLoadBalancing:
-      disabled: true
-  networkRef:
-    name: compute-network-name # kpt-set: ${compute-network-name}
-    namespace: projects-namespace # kpt-set: ${projects-namespace}
-  subnetworkRef:
-    name: compute-network-name-subnetwork # kpt-set: ${compute-network-name}-subnetwork
-    namespace: projects-namespace # kpt-set: ${projects-namespace}
-
+    external: projects/project-id # kpt-set: projects/${project-id}
