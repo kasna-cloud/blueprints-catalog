@@ -31,7 +31,7 @@ spec:
     dailyMaintenanceWindow:
       startTime: 00:00
   workloadIdentityConfig:
-      identityNamespace: project-id.svc.id.goog # ${project-id}.svc.id.goog
+    identityNamespace: project-id.svc.id.goog # kpt-set: ${project-id}.svc.id.goog
   addonsConfig:
     gcePersistentDiskCsiDriverConfig:
       enabled: true
