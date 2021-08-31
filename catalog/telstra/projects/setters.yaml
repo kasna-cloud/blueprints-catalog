@@ -10,3 +10,4 @@ data:
   billing-account-id: 014244-F1A39A-218EB5
   location: us-central1
   folder-id: 183622773365
+  pubsub-topic: projects/telstra-innova-ops-38wnmgfo/topics/telstra-innova-ops-pubsub
