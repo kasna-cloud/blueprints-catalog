@@ -1,0 +1,35 @@
+
+# Create a Service Account to scope RBAC for namespace
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccount
+metadata:
+  name: project-name-sa # kpt-set: ${project-name}-sa
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+    cnrm.cloud.google.com/project-id: management-project-id # kpt-set: ${management-project-id}
+spec:
+  displayName: project-name-sa # kpt-set: ${project-name}-sa
+---
+apiVersion: core.cnrm.cloud.google.com/v1beta1
+kind: ConfigConnectorContext
+metadata:
+  name: configconnectorcontext.core.cnrm.cloud.google.com
+  namespace: project-namespace # kpt-set: ${project-name}
+spec:
+  googleServiceAccount: project-name-sa@management-project-id.iam.gserviceaccount.com # kpt-set: ${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicy
+metadata:
+  name: iampolicy-workload-identity # kpt-set: ${project-name}-iampolicy-workload-identity
+  namespace: config-control # kpt-set: ${management-namespace}
+spec:
+  resourceRef:
+    apiVersion: iam.cnrm.cloud.google.com/v1beta1
+    kind: IAMServiceAccount
+    name: project-name-sa # kpt-set: ${project-name}-sa
+  bindings:
+    - role: roles/iam.workloadIdentityUser
+      members: 
+        - serviceAccount:management-project-id.svc.id.goog[cnrm-system/cnrm-controller-manager-project-name] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[cnrm-system/cnrm-controller-manager-${project-name}]

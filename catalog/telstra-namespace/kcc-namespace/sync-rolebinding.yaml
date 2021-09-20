@@ -1,0 +1,57 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: sync-repo # kpt-set: sync-repo-${project-id}
+  namespace: project-name # kpt-set: ${project-name}
+roleRef:
+  name: cluster-admin
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
+    kind: ServiceAccount
+    namespace: config-management-system
+---
+# Give KCC for this project's namespace permission to read KCC resources in the projects namespace.
+# This allows IAMMemberPolicy in this project's namespace to reference the project in the projects namespace.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: cnrm-project-viewer-project-name # kpt-set: cnrm-project-viewer-${project-name}
+  namespace: project-name # kpt-set: ${project-name}
+roleRef:
+  name: cnrm-viewer
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - name: ns-reconciler-project-name # kpt-set: ns-reconciler-${project-name}
+    namespace: config-management-system
+    kind: ServiceAccount
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: # kpt-merge: hierarchy/allow-resource-reference-from-hierarchy
+  name: allow-project-id-reference-from-hierarchy # kpt-set: allow-${project-id}-reference-from-hierarchy
+  namespace: hierarchy
+roleRef:
+  name: cnrm-viewer
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - name: cnrm-controller-manager-project-name # kpt-set: cnrm-controller-manager-${project-name}
+    namespace: cnrm-system
+    kind: ServiceAccount
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: cluster-admin-project-name # kpt-set: cluster-admin-${project-name}
+  namespace: project-name # kpt-set: ${project-name}
+roleRef:
+  name: cluster-admin
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - name: cnrm-controller-manager-project-name # kpt-set: cnrm-controller-manager-${project-name}
+    kind: ServiceAccount
+    namespace: cnrm-system
