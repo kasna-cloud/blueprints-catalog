@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: # kpt-merge: /setters
+  name: setters
+data:
+  management-project-id: telstra-id-ops
+  management-project-name: telstra-id-ops
+  projects-namespace: projects
+  management-namespace: config-control
+  folder-id: 592261936237

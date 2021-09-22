@@ -1,0 +1,168 @@
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccount
+metadata: # kpt-merge: config-control/projects-sa
+  name: projects-sa
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  displayName: projects-sa
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata: # kpt-merge: config-control/projects-sa-projectcreator-permissions
+  name: projects-sa-project-owner
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:projects-sa@telstra-id-ops.iam.gserviceaccount.com" # kpt-set: serviceAccount:projects-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Folder
+    external: folders/592261936237 # kpt-set: folders/${folder-id}
+  role: roles/owner
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata: # kpt-merge: config-control/projects-sa-projectcreator-permissions
+  name: projects-sa-project-creator
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:projects-sa@telstra-id-ops.iam.gserviceaccount.com" # kpt-set: serviceAccount:projects-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Folder
+    external: folders/592261936237 # kpt-set: folders/${folder-id}
+  role: roles/resourcemanager.projectCreator
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata: # kpt-merge: config-control/projects-sa-projectcreator-permissions
+  name: projects-sa-project-mover
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:projects-sa@telstra-id-ops.iam.gserviceaccount.com" # kpt-set: serviceAccount:projects-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Folder
+    external: folders/592261936237 # kpt-set: folders/${folder-id}
+  role: roles/resourcemanager.projectMover
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata: # kpt-merge: config-control/projects-sa-projectcreator-permissions
+  name: projects-sa-project-deleter
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:projects-sa@telstra-id-ops.iam.gserviceaccount.com" # kpt-set: serviceAccount:projects-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Folder
+    external: folders/592261936237 # kpt-set: folders/${folder-id}
+  role: roles/resourcemanager.projectDeleter
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata: # kpt-merge: config-control/projects-sa-workload-identity-binding
+  name: projects-sa-workload-identity-binding
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  member: serviceAccount:telstra-id-ops.svc.id.goog[cnrm-system/cnrm-controller-manager-projects] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[cnrm-system/cnrm-controller-manager-projects]
+  resourceRef:
+    name: projects-sa
+    apiVersion: iam.cnrm.cloud.google.com/v1beta1
+    kind: IAMServiceAccount
+  role: roles/iam.workloadIdentityUser
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata: # kpt-merge: config-control/projects-sa-projectcreator-permissions
+  name: projects-sa-source-reader
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:projects-sa@telstra-id-ops.iam.gserviceaccount.com" # kpt-set: serviceAccount:projects-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: telstra-id-ops # kpt-set: ${management-project-id}
+  role: roles/source.reader
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata: # kpt-merge: config-control/projects-sa-projectcreator-permissions
+  name: projects-sa-folder-editor
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:projects-sa@telstra-id-ops.iam.gserviceaccount.com" # kpt-set: serviceAccount:projects-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Folder
+    external: folders/592261936237 # kpt-set: folders/${folder-id}
+  role: roles/resourcemanager.folderEditor
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata: # kpt-merge: config-control/projects-sa-projectcreator-permissions
+  name: projects-sa-folder-creator
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:projects-sa@telstra-id-ops.iam.gserviceaccount.com" # kpt-set: serviceAccount:projects-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Folder
+    external: folders/592261936237 # kpt-set: folders/${folder-id}
+  role: roles/resourcemanager.folderCreator
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata: # kpt-merge: config-control/projects-sa-projectcreator-permissions
+  name: projects-sa-folder-iam-admin
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/blueprint: cnrm/landing-zone/v0.2.0
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:projects-sa@telstra-id-ops.iam.gserviceaccount.com" # kpt-set: serviceAccount:projects-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Folder
+    external: folders/592261936237 # kpt-set: folders/${folder-id}
+  role: roles/resourcemanager.folderIamAdmin
+---
+apiVersion: v1
+kind: Namespace
+metadata: # kpt-merge: /projects
+  name: projects
+  annotations:
+    cnrm.cloud.google.com/folder-id: "592261936237" # kpt-set: ${folder-id}
+---
+apiVersion: core.cnrm.cloud.google.com/v1beta1
+kind: ConfigConnectorContext
+metadata: # kpt-merge: projects/configconnectorcontext.core.cnrm.cloud.google.com
+  name: configconnectorcontext.core.cnrm.cloud.google.com
+  namespace: projects
+spec:
+  googleServiceAccount: projects-sa@telstra-id-ops.iam.gserviceaccount.com # kpt-set: projects-sa@${management-project-id}.iam.gserviceaccount.com
