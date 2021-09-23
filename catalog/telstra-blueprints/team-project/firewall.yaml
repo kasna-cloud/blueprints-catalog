@@ -6,6 +6,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: team1-83etc # kpt-set: ${project-id}
 spec:
+  priority: 5000
   deny:
     - protocol: tcp
     - protocol: icmp
@@ -13,4 +14,3 @@ spec:
   networkRef:
     name: telstra-team1-network # kpt-set: ${project-name}-network
     namespace: projects # kpt-set: ${projects-namespace}
-  priority: 5000

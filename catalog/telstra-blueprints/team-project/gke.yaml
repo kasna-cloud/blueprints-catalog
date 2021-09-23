@@ -40,6 +40,10 @@ spec:
   networkingMode: VPC_NATIVE
   podSecurityPolicyConfig:
     enabled: true
+  privateClusterConfig:
+    enablePrivateEndpoint: true
+    enablePrivateNodes: true
+    masterIpv4CidrBlock: 10.10.0.0/28
   subnetworkRef:
     name: telstra-team1-primary-subnet # kpt-set: ${project-name}-primary-subnet
     namespace: projects # kpt-set: ${projects-namespace}
@@ -47,7 +51,3 @@ spec:
     enabled: true
   workloadIdentityConfig:
     identityNamespace: team1-83etc.svc.id.goog # kpt-set: ${project-id}.svc.id.goog
-  privateClusterConfig:
-    enablePrivateEndpoint: true
-    enablePrivateNodes: true
-    masterIpv4CidrBlock: 10.10.0.0/28
