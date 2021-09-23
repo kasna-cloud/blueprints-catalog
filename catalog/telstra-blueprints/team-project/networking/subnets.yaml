@@ -26,7 +26,7 @@ spec:
     aggregationInterval: INTERVAL_10_MIN
     flowSampling: 0.5
   networkRef:
-    name: vpc-telstra-id-shared-network # kpt-set: ${vpc-name}
+    name: vpc-telstra-id-shared-network # kpt-set: vpc-${project-name}-network
     namespace: networking # kpt-set: ${network-namespace}
   privateIpGoogleAccess: true
   region: australia-southeast1 # kpt-set: ${location}
