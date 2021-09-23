@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  folder-id: "592261936237"
+  folder-id: "350756193032"
   location: australia-southeast1
   projects-namespace: projects
   pubsub-topic: projects/telstra-innova-ops-4jydfe/topics/telstra-innova-ops-pubsub
