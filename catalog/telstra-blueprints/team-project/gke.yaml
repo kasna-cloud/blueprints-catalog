@@ -1,0 +1,53 @@
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerCluster
+metadata:
+  name: telstra-team1-gke-cluster # kpt-set: ${project-name}-gke-cluster
+  namespace: projects # kpt-set: ${projects-namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: team1-83etc # kpt-set: ${project-id}
+    cnrm.cloud.google.com/remove-default-node-pool: "false"
+spec:
+  addonsConfig:
+    configConnectorConfig:
+      enabled: true
+    dnsCacheConfig:
+      enabled: true
+    gcePersistentDiskCsiDriverConfig:
+      enabled: true
+    networkPolicyConfig:
+      disabled: false
+  clusterTelemetry:
+    type: SYSTEM_ONLY
+  description: A routes-based cluster confined to one zone configured for development.
+  enableIntranodeVisibility: true
+  initialNodeCount: 1
+  ipAllocationPolicy:
+    clusterSecondaryRangeName: telstra-team1-cluster-subnet # kpt-set: ${project-name}-cluster-subnet
+    servicesSecondaryRangeName: telstra-team1-services-subnet # kpt-set: ${project-name}-services-subnet
+  location: australia-southeast1 # kpt-set: ${location}
+  maintenancePolicy:
+    dailyMaintenanceWindow:
+      startTime: 00:00
+  masterAuthorizedNetworksConfig:
+    cidrBlocks:
+      - cidrBlock: 10.2.0.0/16
+        displayName: telstra-team1-network # kpt-set: ${project-name}-network
+  networkPolicy:
+    enabled: true
+  networkRef:
+    name: telstra-team1-network # kpt-set: ${project-name}-network
+    namespace: projects # kpt-set: ${projects-namespace}
+  networkingMode: VPC_NATIVE
+  podSecurityPolicyConfig:
+    enabled: true
+  subnetworkRef:
+    name: telstra-team1-primary-subnet # kpt-set: ${project-name}-primary-subnet
+    namespace: projects # kpt-set: ${projects-namespace}
+  verticalPodAutoscaling:
+    enabled: true
+  workloadIdentityConfig:
+    identityNamespace: team1-83etc.svc.id.goog # kpt-set: ${project-id}.svc.id.goog
+  privateClusterConfig:
+    enablePrivateEndpoint: true
+    enablePrivateNodes: true
+    masterIpv4CidrBlock: 10.10.0.0/28

@@ -1,0 +1,11 @@
+apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+kind: Project
+metadata:
+  name: team1-83etc # kpt-set: ${project-id}
+  namespace: projects # kpt-set: ${projects-namespace}
+  annotations:
+    cnrm.cloud.google.com/auto-create-network: "false"
+spec:
+  name: telstra-team1 # kpt-set: ${project-name}
+  folderRef:
+    external: folders/350756193032 # kpt-set: folders/${folder-id}
