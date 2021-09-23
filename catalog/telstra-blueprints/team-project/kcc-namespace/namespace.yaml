@@ -1,0 +1,55 @@
+# Create namespace in the Kubernetes cluster to manage KCC resources in this project
+apiVersion: v1
+kind: Namespace
+metadata: # kpt-merge: /project-name
+  name: telstra-id-shared # kpt-set: ${project-name}
+  annotations:
+    cnrm.cloud.google.com/project-id: telstra-id-shared # kpt-set: ${project-id}
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata: # kpt-merge: config-control/project-name-sourcereader-permissions
+  name: telstra-id-shared-sourcereader-permissions # kpt-set: ${project-name}-sourcereader-permissions
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  member: "serviceAccount:telstra-id-shared-sa@telstra-id-ops.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: telstra-id-ops # kpt-set: ${management-project-id}
+  role: roles/source.reader
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata: # kpt-merge: config-control/project-name-telstra-owner
+  name: telstra-id-shared-telstra-owner # kpt-set: ${project-name}-telstra-owner
+  namespace: config-control # kpt-set: ${management-namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: telstra-id-shared # kpt-set: ${project-id}
+spec:
+  member: "serviceAccount:telstra-id-shared-sa@telstra-id-ops.iam.gserviceaccount.com" # kpt-set: serviceAccount:${project-name}-sa@${management-project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: telstra-id-shared # kpt-set: ${{management-project-id}
+  role: roles/owner
+---
+# Allow KCC's Kubernetes Service Account to use the GCP ServiceAccount
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPartialPolicy
+metadata: # kpt-merge: config-control/project-name-sa-workload-identity-binding
+  name: telstra-id-shared-sa-workload-identity-binding # kpt-set: ${project-name}-sa-workload-identity-binding
+  namespace: config-control # kpt-set: ${management-namspace}
+  annotations:
+    cnrm.cloud.google.com/project-id: telstra-id-ops # kpt-set: ${management-project-id}
+spec:
+  bindings:
+    - members:
+        - member: serviceAccount:telstra-id-ops.svc.id.goog[config-management-system/ns-reconciler-telstra-id-shared] # kpt-set: serviceAccount:${management-project-id}.svc.id.goog[config-management-system/ns-reconciler-${project-name}]
+      role: roles/iam.workloadIdentityUser
+  resourceRef:
+    apiVersion: iam.cnrm.cloud.google.com/v1beta1
+    kind: IAMServiceAccount
+    external: projects/telstra-id-ops/serviceAccounts/telstra-id-shared-sa@telstra-id-ops.iam.gserviceaccount.com # kpt-set: projects/${management-project-id}/serviceAccounts/${project-name}-sa@${management-project-id}.iam.gserviceaccount.com

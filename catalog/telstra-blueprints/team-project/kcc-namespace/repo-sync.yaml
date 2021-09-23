@@ -1,0 +1,38 @@
+# apiVersion: configsync.gke.io/v1alpha1
+# kind: RepoSync
+# metadata:
+#   name: repo-sync-telstra-id-shared # kpt-set: repo-sync-${project-name}
+#   namespace: telstra-id-shared # kpt-set: ${project-name}
+# spec:
+#   git:
+#     auth: gcenode
+#     branch: master
+#     dir: kcc
+#     repo: https://source.developers.google.com/p/telstra-id-shared/r/telstra-id-shared # kpt-set: https://source.developers.google.com/p/${project-id}/r/${project-id}
+#   sourceFormat: unstructured
+#   # apiVersion: configsync.gke.io/v1alpha1
+#   # kind: RepoSync
+#   # metadata: # kpt-merge: project-name/repo-sync
+#   #   name: repo-sync
+#   #   namespace: telstra-id-shared # kpt-set: ${project-name}
+#   # spec:
+#   #   git:
+#   #     auth: gcpserviceaccount
+#   #     branch: master
+#   #     dir: kcc
+#   #     gcpServiceAccountEmail: telstra-id-shared-sa@telstra-id-ops.iam.gserviceaccount.com
+#   #     repo: https://source.developers.google.com/p/telstra-id-ops/r/telstra-id-shared # kpt-set: https://source.developers.google.com/p/${management-project-id}/r/${project-id}
+#   #   sourceFormat: unstructured
+# # apiVersion: configsync.gke.io/v1alpha1
+# # kind: RepoSync
+# # metadata: # kpt-merge: project-name/repo-sync
+# #   name: repo-sync
+# #   namespace: telstra-id-shared # kpt-set: ${project-name}
+# # spec:
+# #   git:
+# #     auth: gcpserviceaccount
+# #     branch: master
+# #     dir: kcc
+# #     gcpServiceAccountEmail: telstra-id-shared-sa@telstra-id-ops.iam.gserviceaccount.com
+# #     repo: https://source.developers.google.com/p/telstra-id-ops/r/telstra-id-shared # kpt-set: https://source.developers.google.com/p/${management-project-id}/r/${project-id}
+# #   sourceFormat: unstructured

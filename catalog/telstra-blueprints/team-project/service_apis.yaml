@@ -1,0 +1,95 @@
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata: # kpt-merge: namespace/container.googleapis.com
+  name: container.googleapis.com
+  namespace: telstra-id-shared # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: projects/telstra-id-shared # kpt-set: projects/${project-id}
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata: # kpt-merge: namespace/dns.googleapis.com
+  name: dns.googleapis.com
+  namespace: telstra-id-shared # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: projects/telstra-id-shared # kpt-set: projects/${project-id}
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata: # kpt-merge: namespace/bigquery.googleapis.com
+  name: bigquery.googleapis.com
+  namespace: telstra-id-shared # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: projects/telstra-id-shared # kpt-set: projects/${project-id}
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata: # kpt-merge: namespace/bigquerystorage.googleapis.com
+  name: bigquerystorage.googleapis.com
+  namespace: telstra-id-shared # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: projects/telstra-id-shared # kpt-set: projects/${project-id}
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata: # kpt-merge: namespace/sourcerepo.googleapis.com
+  name: sourcerepo.googleapis.com
+  namespace: telstra-id-shared # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: projects/telstra-id-shared # kpt-set: projects/${project-id}
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata: # kpt-merge: namespace/cloudbuild.googleapis.com
+  name: cloudbuild.googleapis.com
+  namespace: telstra-id-shared # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: projects/telstra-id-shared # kpt-set: projects/${project-id}
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata: # kpt-merge: namespace/containerregistry.googleapis.com
+  name: containerregistry.googleapis.com
+  namespace: telstra-id-shared # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: projects/telstra-id-shared # kpt-set: projects/${project-id}
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata: # kpt-merge: namespace/run.googleapis.com
+  name: run.googleapis.com
+  namespace: telstra-id-shared # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: projects/telstra-id-shared # kpt-set: projects/${project-id}

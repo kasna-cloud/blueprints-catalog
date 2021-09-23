@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: # kpt-merge: /setters
+  name: setters
+data:
+  management-project-id: telstra-id-ops
+  management-project-name: telstra-id-ops
+  management-project-namespace: config-control
+  projects-namespace: projects
+  namespace: telstra-id-shared
+  project-name: telstra-id-shared
+  project-id: telstra-id-shared
+  billing-account-id: 015488-140324-334D1F
+  location: australia-southeast1
+  folder-id: 1091418814829
+  network-namespace: networking
+  vpc-name: vpc-telstra-id-shared-network
+  subnet-cidr: 10.2.0.0/16
+  services-subnet-cidr: 10.3.0.0/16
+  cluster-subnet-cidr: 10.4.0.0/16
+  pubsub-topic: projects/telstra-innova-ops-4jydfe/topics/telstra-innova-ops-pubsub

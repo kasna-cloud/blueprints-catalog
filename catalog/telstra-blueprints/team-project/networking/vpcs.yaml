@@ -1,0 +1,10 @@
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeNetwork
+metadata:
+  name: vpc-telstra-id-shared-network # kpt-set: vpc-${project-name}-network
+  namespace: networking # kpt-set: ${network-namespace}
+  annotations:
+    cnrm.cloud.google.com/project-id: telstra-id-shared # kpt-set: ${project-id}
+spec:
+  autoCreateSubnetworks: false
+  routingMode: REGIONAL
